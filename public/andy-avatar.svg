@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Illustrated portrait of a young Asian man">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="0.55" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3c9a0"/>
+      <stop offset="1" stop-color="#e2ab7c"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="80" cy="70" r="90" fill="#fff" opacity="0.10"/>
+  <circle cx="340" cy="340" r="120" fill="#fff" opacity="0.10"/>
+
+  <!-- shoulders / shirt -->
+  <path d="M40 400 C50 320 110 292 200 292 C290 292 350 320 360 400 Z" fill="url(#shirt)"/>
+  <!-- collar -->
+  <path d="M160 296 L200 348 L240 296 L222 292 L200 322 L178 292 Z" fill="#f8fafc"/>
+  <path d="M178 292 L200 322 L222 292 L212 288 L200 302 L188 288 Z" fill="#e2e8f0"/>
+
+  <!-- neck -->
+  <path d="M170 250 L170 300 C185 316 215 316 230 300 L230 250 Z" fill="#d89c6c"/>
+
+  <!-- ears -->
+  <ellipse cx="119" cy="198" rx="13" ry="22" fill="#e2ab7c"/>
+  <ellipse cx="281" cy="198" rx="13" ry="22" fill="#e2ab7c"/>
+  <ellipse cx="119" cy="198" rx="6" ry="12" fill="#d3946a"/>
+  <ellipse cx="281" cy="198" rx="6" ry="12" fill="#d3946a"/>
+
+  <!-- face -->
+  <path d="M126 170 C126 108 160 84 200 84 C240 84 274 108 274 170 C274 232 244 270 200 270 C156 270 126 232 126 170 Z" fill="url(#skin)"/>
+
+  <!-- hair -->
+  <path d="M122 176 C108 108 140 62 200 62 C262 62 294 106 278 176 C272 150 262 128 248 118 C230 128 190 124 168 106 C150 120 132 146 122 176 Z" fill="#14110f"/>
+  <path d="M150 92 C170 70 230 66 258 96" stroke="#2b2622" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- eyebrows -->
+  <path d="M152 156 Q170 146 188 154" stroke="#14110f" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M212 154 Q230 146 248 156" stroke="#14110f" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- eyes -->
+  <path d="M154 178 Q170 168 186 178 Q170 186 154 178 Z" fill="#fff"/>
+  <path d="M214 178 Q230 168 246 178 Q230 186 214 178 Z" fill="#fff"/>
+  <circle cx="170" cy="177" r="5.5" fill="#2a1a10"/>
+  <circle cx="230" cy="177" r="5.5" fill="#2a1a10"/>
+  <circle cx="172" cy="175" r="1.7" fill="#fff"/>
+  <circle cx="232" cy="175" r="1.7" fill="#fff"/>
+  <path d="M152 177 Q170 166 188 177" stroke="#14110f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M212 177 Q230 166 248 177" stroke="#14110f" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- nose -->
+  <path d="M200 182 C196 200 192 212 190 218 C196 223 204 223 210 218 C208 212 204 200 200 182 Z" fill="#d89c6c" opacity="0.55"/>
+  <path d="M190 220 Q200 226 210 220" stroke="#b9805a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- smile -->
+  <path d="M170 236 Q200 262 230 236 Q200 248 170 236 Z" fill="#fff" stroke="#9a5b45" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M168 236 Q200 266 232 236" stroke="#9a5b45" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- cheeks -->
+  <circle cx="150" cy="222" r="14" fill="#f08a7a" opacity="0.22"/>
+  <circle cx="250" cy="222" r="14" fill="#f08a7a" opacity="0.22"/>
+</svg>
