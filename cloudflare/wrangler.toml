@@ -1,0 +1,11 @@
+name = "andy-portfolio-contact"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# Your Supabase project URL (not secret)
+SUPABASE_URL = "https://YOUR-PROJECT-ID.supabase.co"
+# Your live website address, so only your site can call this Worker
+ALLOWED_ORIGIN = "https://YOUR-SITE.pages.dev"
+
+# Secret (do NOT write it here). Set it with:  wrangler secret put SUPABASE_SERVICE_KEY
