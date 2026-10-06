@@ -17,7 +17,11 @@ export const profile = {
   school: "San Sebastian College - Recoletos de Manila",
   course: "Bachelor of Science in Information Technology",
   location: "Quezon City, Philippines",
+<<<<<<< HEAD
   email: "areyes.ph02@gmail.com",
+=======
+  email: "andy.reyes@example.com", // <- change to your real email
+>>>>>>> ceeedce97b3417eb0efe02d85dd0c764f1407c69
   github: "https://github.com/exdoorx",
   linkedin: "https://www.linkedin.com/in/areyesph/",
   about: [

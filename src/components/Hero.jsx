@@ -82,10 +82,15 @@ export default function Hero() {
           <div className="absolute -inset-3 animate-spin rounded-full bg-[conic-gradient(from_0deg,#6366f1,#22d3ee,#34d399,#6366f1)] opacity-70 blur-md [animation-duration:10s]" />
           <div className="relative animate-float overflow-hidden rounded-full border-4 border-white/20 bg-slate-900 shadow-2xl">
             <img
+<<<<<<< HEAD
               src="/andy.jpg"
               alt="Portrait of Andy Reyes"
               width="800"
               height="800"
+=======
+              src="/andy-avatar.svg"
+              alt="Portrait of Andy Reyes"
+>>>>>>> ceeedce97b3417eb0efe02d85dd0c764f1407c69
               className="aspect-square w-full object-cover"
             />
           </div>
