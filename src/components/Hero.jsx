@@ -51,7 +51,7 @@ export default function Hero() {
           </span>
 
           <h1 className="mt-6 font-display text-5xl font-bold leading-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
-            Hi, I'm <span className="gradient-text">{profile.name}</span>
+            Hi, I'm <span className="gradient-text">Andy</span>
           </h1>
 
           <p className="mt-5 h-8 font-display text-xl text-slate-600 dark:text-slate-300 sm:text-2xl">
