@@ -8,26 +8,25 @@ export const profile = {
   age: 26,
   role: "Network Security Specialist · BSIT Graduate",
   roles: [
-    "Network Security Specialist",
-    "BSIT Graduate",
+    "Network Security Researcher",
+    "BSIT Undegraduate",
     "Technical Support Specialist",
-    "Prompt Engineer",
+    "Master Prompt Engineer",
     "TESDA NC II & NC III Certified",
+    "Automation Specialist",
   ],
   school: "San Sebastian College - Recoletos de Manila",
   course: "Bachelor of Science in Information Technology",
   location: "Quezon City, Philippines",
-<<<<<<< HEAD
+
   email: "areyes.ph02@gmail.com",
-=======
-  email: "andy.reyes@example.com", // <- change to your real email
->>>>>>> ceeedce97b3417eb0efe02d85dd0c764f1407c69
+
   github: "https://github.com/exdoorx",
   linkedin: "https://www.linkedin.com/in/areyesph/",
   about: [
-    "I'm a BSIT graduate from San Sebastian College - Recoletos de Manila with remote work experience in network security and technical support.",
-    "From May 2023 to November 2025 I worked as a Network Security Specialist focused on network services and network defense. Before that I was a Technical Support Specialist at ZOOSK LIMITED, working with Python and security intelligence.",
-    "I'm TESDA NC II and NC III certified, I'm currently studying network, cloud and cybersecurity at the Institute of Applied Technology, and I specialize in prompt engineering with Claude, Gemini and Microsoft Copilot.",
+    "I'm an Information Technology professional with an educational background in BSIT at San Sebastian College – Recoletos de Manila and hands-on experience in software development, technical support, and network security.",
+    "From May 2022 to November 2025, I gained experience in software development and technical support, focusing on troubleshooting, customer service, and client satisfaction. I also worked as a Technical Support Specialist at ZOOSK LIMITED, applying Python and security intelligence to support technical investigations and problem-solving.",
+    "I hold TESDA NC II and NC III certifications and am continuously developing my skills in Software Development, AI automation, and Cybersecurity at the Institute of Applied Technology. I also explore prompt engineering and AI-assisted workflows using Claude, Google Gemini, and Microsoft Copilot.",
   ],
 };
 
@@ -48,9 +47,20 @@ export const skills = [
 ];
 
 export const tools = [
-  "VS Code", "Git & GitHub", "JavaScript", "React", "Tailwind CSS", "Python",
-  "SQL / PostgreSQL", "Supabase", "Cloudflare", "Node.js", "Network Services", "Network Defense",
-  "Security Intelligence", "MS Office",
+  "VS Code",
+  "Git & GitHub",
+  "JavaScript",
+  "React",
+  "Tailwind CSS",
+  "Python",
+  "SQL / PostgreSQL",
+  "Supabase",
+  "Cloudflare",
+  "Node.js",
+  "Network Services",
+  "Network Defense",
+  "Security Intelligence",
+  "MS Office",
 ];
 
 // type: used by the filter buttons. badge: small label on the card.

@@ -19,7 +19,7 @@ function useTypewriter(words, speed = 70, pause = 1400) {
         }
         setText(word.slice(0, text.length + (deleting ? -1 : 1)));
       },
-      done ? pause : deleting ? speed / 2 : speed
+      done ? pause : deleting ? speed / 2 : speed,
     );
     return () => clearTimeout(t);
   }, [text, deleting, i, words, speed, pause]);
@@ -31,7 +31,10 @@ export default function Hero() {
   const typed = useTypewriter(profile.roles);
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center overflow-hidden px-5 pt-24 pb-16"
+    >
       {/* animated background blobs */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-24 top-10 h-96 w-96 animate-blob rounded-full bg-brand-500/30 blur-3xl" />
@@ -53,12 +56,15 @@ export default function Hero() {
 
           <p className="mt-5 h-8 font-display text-xl text-slate-600 dark:text-slate-300 sm:text-2xl">
             {typed}
-            <span className="ml-0.5 inline-block w-0.5 animate-blink bg-accent-400 align-middle">&nbsp;</span>
+            <span className="ml-0.5 inline-block w-0.5 animate-blink bg-accent-400 align-middle">
+              &nbsp;
+            </span>
           </p>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-400 md:mx-0">
-            {profile.course} graduate with remote experience in network security and technical
-            support. I also build clean, useful web and app projects.
+            {profile.course} graduate with remote experience in network security
+            and technical support. I also build clean, useful web and app
+            projects.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
@@ -82,23 +88,21 @@ export default function Hero() {
           <div className="absolute -inset-3 animate-spin rounded-full bg-[conic-gradient(from_0deg,#6366f1,#22d3ee,#34d399,#6366f1)] opacity-70 blur-md [animation-duration:10s]" />
           <div className="relative animate-float overflow-hidden rounded-full border-4 border-white/20 bg-slate-900 shadow-2xl">
             <img
-<<<<<<< HEAD
               src="/andy.jpg"
               alt="Portrait of Andy Reyes"
               width="800"
               height="800"
-=======
-              src="/andy-avatar.svg"
-              alt="Portrait of Andy Reyes"
->>>>>>> ceeedce97b3417eb0efe02d85dd0c764f1407c69
               className="aspect-square w-full object-cover"
             />
           </div>
           <div className="glass absolute -bottom-2 -left-4 animate-float rounded-2xl px-4 py-2 text-xs font-semibold text-slate-800 [animation-delay:-2s] dark:text-white">
-            🛡️ Network Security
+            🤖 Automation Specialist
           </div>
-          <div className="glass absolute -right-4 top-6 animate-float rounded-2xl px-4 py-2 text-xs font-semibold text-slate-800 [animation-delay:-4s] dark:text-white">
-            ✅ TESDA NC II &amp; III
+          <div className="glass absolute -right-20 top-6 animate-float rounded-2xl px-4 py-2 text-xs font-semibold text-slate-800 [animation-delay:-4s] dark:text-white">
+            💻 Software Development
+          </div>
+          <div className="glass absolute -left-30 top-20 animate-float rounded-2xl px-4 py-2 text-xs font-semibold text-slate-800 [animation-delay:-4s] dark:text-white">
+            🛡️ Security Researcher
           </div>
         </div>
       </div>

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import { About, Skills, Projects, Contact, Footer } from "./components/Sections";
+import {
+  About,
+  Skills,
+  Projects,
+  Contact,
+  Footer,
+} from "./components/Sections";
 import { Experience, Certifications, DataCloud } from "./components/Career";
 
 export default function App() {
@@ -15,7 +21,9 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
-    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch {}
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {}
   }, [dark]);
 
   return (
