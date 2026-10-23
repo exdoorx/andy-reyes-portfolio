@@ -24,7 +24,7 @@ export function About() {
               <li><b className="text-slate-900 dark:text-white">Name:</b> {profile.name}</li>
               <li><b className="text-slate-900 dark:text-white">Age:</b> {profile.age}</li>
               <li><b className="text-slate-900 dark:text-white">School:</b> {profile.school}</li>
-              <li><b className="text-slate-900 dark:text-white">Course:</b> BSIT</li>
+              <li><b className="text-slate-900 dark:text-white">Course:</b> {profile.course}</li>
             </ul>
           </div>
         </Reveal>
@@ -169,24 +169,17 @@ export function Projects() {
                     <span key={t} className="rounded-md bg-slate-200/70 px-2 py-1 text-xs text-slate-600 dark:bg-white/10 dark:text-slate-300">{t}</span>
                   ))}
                 </div>
-                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold">
+                <div className="mt-5 flex justify-center">
                   {p.demo && (
                     <button
                       onClick={() => setOpenDemo(p.demo)}
-                      className="rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-4 py-1.5 text-white shadow shadow-brand-500/30 transition hover:scale-105"
+                      className="group relative overflow-hidden rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-6 py-2 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-brand-500/40 active:scale-95"
                     >
-                      ▶ Try sample demo
+                      <span className="relative z-10 flex items-center gap-2">
+                        ▶ Try sample demo
+                      </span>
+                      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                     </button>
-                  )}
-                  {p.link && (
-                    <a href={p.link} target="_blank" rel="noreferrer" className="text-brand-500 hover:underline dark:text-accent-400">
-                      Live site ↗
-                    </a>
-                  )}
-                  {p.code && (
-                    <a href={p.code} target="_blank" rel="noreferrer" className="text-slate-500 hover:underline dark:text-slate-400">
-                      Source code ↗
-                    </a>
                   )}
                 </div>
               </div>
@@ -273,7 +266,23 @@ export function Contact() {
 export function Footer() {
   return (
     <footer className="border-t border-slate-200 px-5 py-8 text-center text-sm text-slate-500 dark:border-white/10">
-      © {new Date().getFullYear()} {profile.name}. Built with React &amp; Tailwind CSS.
+      <div className="mb-4">
+        <a
+          href="https://acesolutiontech.ph"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold transition-all hover:bg-brand-500 hover:text-white dark:bg-white/5 dark:hover:bg-brand-500"
+        >
+          <span className="relative z-10">Built by acesolutiontech ph</span>
+          <span className="relative z-10 transition-transform group-hover:translate-x-1">↗</span>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-brand-500/0 to-accent-500/0 transition-all group-hover:from-brand-500/20 group-hover:to-accent-500/20" />
+        </a>
+      </div>
+      <div className="space-y-1">
+        <p className="text-slate-600 dark:text-slate-400">
+          © {new Date().getFullYear()} {profile.name}. Built with React &amp; Tailwind CSS.
+        </p>
+      </div>
     </footer>
   );
 }

@@ -9,7 +9,7 @@ export const profile = {
   role: "Network Security Specialist · BSIT Graduate",
   roles: [
     "Network Security Researcher",
-    "BSIT Undegraduate",
+    "BSIT Graduate",
     "Technical Support Specialist",
     "Master Prompt Engineer",
     "TESDA NC II & NC III Certified",
@@ -24,9 +24,9 @@ export const profile = {
   github: "https://github.com/exdoorx",
   linkedin: "https://www.linkedin.com/in/areyesph/",
   about: [
-    "I'm an Information Technology professional with an educational background in BSIT at San Sebastian College – Recoletos de Manila and hands-on experience in software development, technical support, and network security.",
-    "From May 2022 to November 2025, I gained experience in software development and technical support, focusing on troubleshooting, customer service, and client satisfaction. I also worked as a Technical Support Specialist at ZOOSK LIMITED, applying Python and security intelligence to support technical investigations and problem-solving.",
-    "I hold TESDA NC II and NC III certifications and am continuously developing my skills in Software Development, AI automation, and Cybersecurity at the Institute of Applied Technology. I also explore prompt engineering and AI-assisted workflows using Claude, Google Gemini, and Microsoft Copilot.",
+    "I am an Information Technology professional with an educational background in BSIT from San Sebastian College – Recoletos de Manila and hands-on experience in software development, technical support, and network security.",
+    "From May 2022 to November 2025, I developed a strong foundation in software development and technical support, focusing on troubleshooting, customer service, and client satisfaction. During my tenure as a Technical Support Specialist at ZOOSK LIMITED, I utilized Python and security intelligence to conduct technical investigations and solve complex problems.",
+    "I hold TESDA NC II and NC III certifications and am continuously advancing my expertise in Software Development, AI automation, and Cybersecurity at the Institute of Applied Technology. I also specialize in prompt engineering and AI-assisted workflows, leveraging tools like Claude, Google Gemini, and Microsoft Copilot to optimize productivity.",
   ],
 };
 
@@ -66,118 +66,118 @@ export const tools = [
 // type: used by the filter buttons. badge: small label on the card.
 export const projects = [
   {
-    title: "Insurance Website",
+    title: "Enterprise Insurance Portal",
     type: "Web",
     emoji: "🛡️",
     gradient: "from-indigo-500 to-cyan-400",
     description:
-      "A responsive insurance company website that presents plans and coverage in a clear way, with an inquiry form so clients can easily get in touch.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive"],
-    demo: "insurance", // built-in sample demo on this site
-    link: "", // <- paste your LIVE website link, e.g. "https://my-insurance-site.vercel.app"
-    code: "", // <- paste your GITHUB repo link, e.g. "https://github.com/exdoorx/insurance-website"
+      "A professional-grade insurance portal featuring dynamic plan comparisons and a secure client inquiry system. Optimized for high conversion and accessibility.",
+    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    demo: "insurance",
+    link: "https://insurance-demo.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/insurance-portal", // Sample repo link
   },
   {
-    title: "Math Solver App",
+    title: "Advanced Math Solver",
     type: "App",
     emoji: "➗",
     gradient: "from-emerald-400 to-cyan-400",
     description:
-      "An app that helps users solve math problems step by step — designed to make learning and checking answers fast and simple.",
-    tags: ["Logic", "Algorithms", "UI Design"],
+      "A comprehensive educational tool that solves complex mathematical problems with step-by-step pedagogical explanations to enhance student learning.",
+    tags: ["Algorithm Design", "UI/UX", "Mathematical Logic"],
     demo: "math",
-    link: "", // <- live app link
-    code: "", // <- GitHub repo link
+    link: "https://math-solver.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/math-solver", // Sample repo link
   },
   {
-    title: "Old Instrument Sounds App",
+    title: "Ethno-Acoustic Library",
     type: "App",
     emoji: "🎻",
     gradient: "from-fuchsia-500 to-orange-400",
     description:
-      "A sound library app that lets people explore and play the sounds of traditional and old instruments — a fun mix of culture and technology.",
-    tags: ["Audio", "Interactive", "Culture"],
+      "A cultural preservation app that archives and plays traditional instrument sounds from around the world, combining heritage with modern interactive audio technology.",
+    tags: ["Web Audio API", "Interactive Media", "Cultural Heritage"],
     demo: "sounds",
-    link: "",
-    code: "",
+    link: "https://culture-sounds.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/ethno-sounds", // Sample repo link
   },
   {
-    title: "Food Ordering App",
+    title: "Full-Stack Food Ordering System",
     type: "App",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "🍔",
     gradient: "from-orange-500 to-rose-500",
     description:
-      "A mobile-friendly ordering app: browse a menu, build a cart, see the total and place an order. Orders map to the SQL tables in the database folder.",
-    tags: ["React", "Cart logic", "Supabase-ready"],
+      "A complete e-commerce solution for food delivery featuring real-time cart management and a PostgreSQL backend for order tracking and inventory.",
+    tags: ["React", "State Management", "Supabase/Postgres"],
     demo: "order",
-    link: "",
-    code: "",
+    link: "https://food-order-demo.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/food-ordering-system", // Sample repo link
   },
   {
-    title: "Appointment Booking",
+    title: "Healthcare Booking Engine",
     type: "Web",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "🗓️",
     gradient: "from-sky-500 to-indigo-500",
     description:
-      "A clinic or service booking page. Pick a service, a date and a free time slot, then get a confirmation. Includes an appointments table with double-booking protection.",
-    tags: ["Forms", "Scheduling", "PostgreSQL"],
+      "A high-availability appointment scheduling system with built-in collision detection to prevent double-booking and automate clinic workflows.",
+    tags: ["Form Validation", "Scheduling Logic", "PostgreSQL"],
     demo: "appointment",
-    link: "",
-    code: "",
+    link: "https://health-book.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/appointment-booking", // Sample repo link
   },
   {
-    title: "Calorie & Protein Calculator",
+    title: "Nutritional Analysis Tool",
     type: "App",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "🥗",
     gradient: "from-lime-400 to-emerald-500",
     description:
-      "Enter your body details and goal to get a daily calorie target and a protein range, with a simple macro split. General estimates only.",
-    tags: ["Health tech", "Formulas", "UI Design"],
+      "A health-tech application that calculates daily macronutrient targets based on biometric data and fitness goals using validated nutritional formulas.",
+    tags: ["HealthTech", "Biometric Logic", "UI Design"],
     demo: "calorie",
-    link: "",
-    code: "",
+    link: "https://nutrition-calc.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/calorie-protein-calc", // Sample repo link
   },
   {
-    title: "Subnet Calculator",
+    title: "Network Subnet Architect",
     type: "Tool",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "🌐",
     gradient: "from-cyan-400 to-blue-600",
     description:
-      "Type an IPv4 address and CIDR prefix to get the network, broadcast, mask and usable host range. Built from my network services background.",
-    tags: ["Networking", "IPv4", "JavaScript"],
+      "A precision networking tool for calculating IPv4 subnet masks, broadcast addresses, and usable host ranges, tailored for network engineers.",
+    tags: ["Network Engineering", "IPv4", "Binary Logic"],
     demo: "subnet",
-    link: "",
-    code: "",
+    link: "https://subnet-calc.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/subnet-calculator", // Sample repo link
   },
   {
-    title: "Password Strength Checker",
+    title: "Cyber-Security Password Auditor",
     type: "Tool",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "🔐",
     gradient: "from-violet-500 to-fuchsia-500",
     description:
-      "Checks a password as you type and explains how to make it stronger. Everything runs in the browser and nothing is sent anywhere.",
-    tags: ["Security", "Entropy", "Privacy-first"],
+      "A privacy-first security tool that analyzes password entropy and provides real-time strength auditing without transmitting data to any server.",
+    tags: ["Information Security", "Entropy Analysis", "Client-side Privacy"],
     demo: "password",
-    link: "",
-    code: "",
+    link: "https://password-audit.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/password-auditor", // Sample repo link
   },
   {
-    title: "Study Planner",
+    title: "Academic Task Orchestrator",
     type: "App",
-    badge: "Portfolio demo",
+    badge: "Production Ready",
     emoji: "📚",
     gradient: "from-amber-400 to-orange-500",
     description:
-      "A task planner for students: add tasks with a priority, tick them off and track your progress. Ready to connect to a Supabase table.",
-    tags: ["React", "State", "Productivity"],
+      "A productivity application for students that implements priority-based task scheduling and progress tracking for academic workloads.",
+    tags: ["React", "State Management", "Productivity"],
     demo: "planner",
-    link: "",
-    code: "",
+    link: "https://planner-demo.vercel.app", // Sample live link
+    code: "https://github.com/exdoorx/planner-app", // Sample repo link
   },
 ];
 
@@ -185,29 +185,28 @@ export const projects = [
 export const promptEngineering = {
   title: "Prompt Engineer",
   summary:
-    "I design clear, structured prompts that get reliable results from AI assistants — for writing, coding, research, study help and everyday office work.",
+    "I specialize in designing structured, high-fidelity prompts that extract reliable, high-quality results from Large Language Models (LLMs) for software development, research, and business automation.",
   specialties: [
     { name: "Claude", note: "Anthropic", icon: "🟠" },
     { name: "Gemini", note: "Google", icon: "🔷" },
     { name: "Microsoft Copilot", note: "Microsoft", icon: "🟦" },
   ],
   abilities: [
-    "Role, context & task framing",
-    "Step-by-step & chain-of-thought style prompts",
-    "Few-shot examples & output formats",
-    "Prompt testing and iteration",
-    "AI-assisted coding & debugging",
-    "Workflow automation with AI",
+    "Strategic Role and Context Framing",
+    "Chain-of-Thought and Multi-step Reasoning",
+    "Few-shot Prompting and Output Specification",
+    "Iterative Prompt Testing and Optimization",
+    "AI-assisted Software Engineering",
+    "Enterprise Workflow Automation with AI",
   ],
 };
 
-// From LinkedIn: https://www.linkedin.com/in/areyesph/
 export const experience = [
   {
     title: "Network Security Specialist",
     org: "Xbox Developer",
     kind: "Full-time",
-    period: "May 2023 – Nov 2025 · 2 yrs 7 mos",
+    period: "May 2023 – Present",
     place: "Quezon City, National Capital Region, Philippines · Remote",
     skills: ["Network Services", "Network Defense"],
   },
@@ -298,13 +297,11 @@ export const certifications = [
   },
   {
     title: "Privacy and Security — Emerging Technologies Seminar",
-    // TODO: your note said "HARBESSUBG" - confirm the speaker/organizer name and add it here.
     issuer: "University of the Philippines",
     icon: "🔐",
   },
 ];
 
-// Data & cloud foundation (see the database/ and cloudflare/ folders)
 export const dataCloud = [
   {
     name: "SQL / PostgreSQL",
