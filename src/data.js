@@ -6,10 +6,10 @@
 export const profile = {
   name: "Andy Reyes",
   age: 26,
-  role: "Network Security Specialist · BSIT Graduate",
+  role: "Network Security Specialist · Software Development",
   roles: [
     "Network Security Researcher",
-    "BSIT Graduate",
+    "Software Development",
     "Technical Support Specialist",
     "Master Prompt Engineer",
     "TESDA NC II & NC III Certified",
@@ -183,21 +183,23 @@ export const projects = [
 
 // Prompt engineering specialization
 export const promptEngineering = {
-  title: "Prompt Engineer",
+  title: "Prompt Engineer & Software Developer",
   summary:
-    "I specialize in designing structured, high-fidelity prompts that extract reliable, high-quality results from Large Language Models (LLMs) for software development, research, and business automation.",
+    "I specialize in designing structured, high-fidelity prompts and building robust software solutions that extract reliable, high-quality results from Large Language Models (LLMs) for software development, automation, and problem-solving.",
   specialties: [
     { name: "Claude", note: "Anthropic", icon: "🟠" },
     { name: "Gemini", note: "Google", icon: "🔷" },
     { name: "Microsoft Copilot", note: "Microsoft", icon: "🟦" },
   ],
   abilities: [
+    "AI-Assisted Software Development",
+    "Full-Stack Application Design & Implementation",
     "Strategic Role and Context Framing",
     "Chain-of-Thought and Multi-step Reasoning",
     "Few-shot Prompting and Output Specification",
     "Iterative Prompt Testing and Optimization",
-    "AI-assisted Software Engineering",
-    "Enterprise Workflow Automation with AI",
+    "AI Workflow Automation & Integration",
+    "Debugging, Refactoring & Code Generation",
   ],
 };
 
