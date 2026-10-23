@@ -3,13 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Andy Reyes - BSIT graduate, TESDA NCII & NCIII certified. Portfolio of projects and experience." />
-    <meta name="theme-color" content="#0b1020" />
-    <link rel="icon" type="image/svg+xml" href="/andy-avatar.svg" />
+    <title>Andy Reyes | Software Developer & Technical Support</title>
+    <meta
+      name="description"
+      content="Portfolio of Andy Reyes, a software developer and technical support professional focused on practical web applications, AI automation, and reliable troubleshooting."
+    />
+    <meta name="author" content="Andy Reyes" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Theme colors are updated at runtime by src/hooks/useTheme.js -->
+    <meta name="theme-color" content="#070b16" />
+    <meta name="color-scheme" content="dark light" />
+
+    <link rel="canonical" href="https://areyes-eight.vercel.app/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Restores the visitor's saved theme before the first paint to avoid a flash. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark =
+            !stored && window.matchMedia("(prefers-color-scheme: light)").matches === false;
+          var isDark = stored ? stored === "dark" : prefersDark;
+          document.documentElement.classList.toggle("dark", isDark);
+        } catch (error) {}
+      })();
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Andy Reyes" />
+    <meta property="og:title" content="Andy Reyes | Software Developer & Technical Support" />
+    <meta
+      property="og:description"
+      content="Practical software, AI-assisted workflows, and reliable technical problem solving."
+    />
+    <meta property="og:url" content="https://areyes-eight.vercel.app/" />
+    <meta property="og:image" content="https://areyes-eight.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Andy Reyes portfolio preview" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andy Reyes | Software Developer & Technical Support" />
+    <meta
+      name="twitter:description"
+      content="Practical software, AI-assisted workflows, and reliable technical problem solving."
+    />
+    <meta name="twitter:image" content="https://areyes-eight.vercel.app/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Andy Reyes",
+        "jobTitle": "Software Developer",
+        "description": "Software developer and technical support professional focused on practical web applications, AI automation, and reliable troubleshooting.",
+        "url": "https://areyes-eight.vercel.app/",
+        "sameAs": ["https://github.com/exdoorx", "https://www.linkedin.com/in/areyesph/"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Quezon City",
+          "addressCountry": "PH"
+        },
+        "knowsAbout": [
+          "Software development",
+          "Technical support",
+          "AI automation",
+          "Network security",
+          "JavaScript",
+          "React",
+          "SQL"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <title>Andy Reyes | BSIT Graduate Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>

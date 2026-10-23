@@ -1,200 +1,133 @@
 # Andy Reyes — Portfolio Website
 
-A modern, animated, fully responsive portfolio built with **React 19 + Vite + Tailwind CSS v4**.
-Features: dark/light mode, typing animation, scroll-reveal animations, project filter, skill bars, timeline, certificates, and a contact form.
+A fast, responsive, and accessible personal portfolio built with **React 19 + Vite + Tailwind CSS v4**.
+It presents practical projects, software development and technical support experience, credentials, and a working contact path.
 
 ---
 
-## 1. What you need first (one time only)
+## Stack
 
-1. **Node.js (LTS)** — download from https://nodejs.org and install it (click Next through the installer).
-   Check it worked: open a terminal and run
-   ```
-   node -v
-   npm -v
-   ```
-   Both should print a version number (Node 20 or newer).
-2. **VS Code** — https://code.visualstudio.com
-3. **Git** (optional but needed for hosting) — https://git-scm.com
+- **React 19** + **Vite 7** for the front end.
+- **Tailwind CSS v4** with a small custom design system in `src/index.css`.
+- **Vitest + React Testing Library + jsdom** for tests.
+- **ESLint** for code quality.
 
-## 2. Open the project in VS Code
+---
 
-1. Unzip / copy the folder `andy-reyes-portfolio` somewhere easy, e.g. `Documents`.
-2. Open VS Code → **File → Open Folder…** → choose `andy-reyes-portfolio`.
-3. VS Code will pop up *"Do you want to install the recommended extensions?"* → click **Install**.
-   (If not, open the Extensions tab `Ctrl+Shift+X` and install the ones below.)
-
-### Recommended VS Code extensions
-| Extension | Why |
-|---|---|
-| **Tailwind CSS IntelliSense** (bradlc.vscode-tailwindcss) | Autocomplete and color previews for Tailwind classes |
-| **ES7+ React/Redux Snippets** (dsznajder.es7-react-js-snippets) | Type `rafce` + Tab to make a component |
-| **Prettier – Code formatter** (esbenp.prettier-vscode) | Auto-format on save |
-| **ESLint** (dbaeumer.vscode-eslint) | Catches mistakes |
-| **Auto Rename Tag** (formulahendry.auto-rename-tag) | Renames closing tags automatically |
-| **Path Intellisense** (christian-kohler.path-intellisense) | Autocomplete file paths |
-| **GitLens** (eamodio.gitlens) | See Git history (useful for hosting) |
-
-## 3. Run the website
-
-Open the VS Code terminal: **Terminal → New Terminal** (or `` Ctrl+` ``), then:
+## Commands
 
 ```bash
-npm install      # downloads everything (first time only, 1–2 minutes)
-npm run dev      # starts the website
+npm install       # install dependencies
+npm run dev       # start the dev server (default http://localhost:5173)
+npm run lint      # lint the code with ESLint
+npm run test      # run unit tests once
+npm run build     # build the production bundle to dist/
+npm run preview   # preview the production build locally
 ```
 
-You will see something like:
+The `dist/` folder is what Vercel or any static host should serve. The default Vercel settings are:
 
-```
-  ➜  Local:   http://localhost:5173/
-```
+- Framework preset: **Vite**
+- Build command: `npm run build`
+- Output directory: `dist`
+- Install command: `npm install`
 
-`Ctrl+Click` that link — your portfolio opens in the browser. Any change you save in VS Code updates instantly.
-To stop the server press `Ctrl+C` in the terminal.
+No extra routing config is needed: this is a single-page site with section navigation.
 
-### Other commands
-```bash
-npm run build     # makes the production version in the "dist" folder
-npm run preview   # test the production version locally
-```
+---
 
-## 4. Make it yours (edit these)
-
-| What | Where |
-|---|---|
-| Name, email, social links, About text, skills, projects, experience, certificates | `src/data.js`  ← **start here** |
-| Your photo | Replace `public/andy-avatar.svg` with your photo, e.g. `public/andy.jpg`, then change `src="/andy-avatar.svg"` in `src/components/Hero.jsx` to `src="/andy.jpg"` |
-| Colors | `src/index.css` (`--color-brand-*`, `--color-accent-*`) |
-| Page title | `index.html` |
-
-> **About the photo:** the included `andy-avatar.svg` is an illustrated sample avatar, not a real photograph.
-> Use a real, well-lit, front-facing photo of yourself (square crop, at least 800×800) for the best result.
->
-> **Please check:** project descriptions, skill percentages and the OJT bullet points in `src/data.js` are
-> sample wording. Edit them so they match what you really did. Also add your real email and your project links
-> (the `link` and `code` fields).
->
-> TESDA is spelled **TESDA** (Technical Education and Skills Development Authority). If your NC II / NC III
-> have specific qualification titles (e.g. "Computer Systems Servicing NC II"), add them in the `certifications` list.
-
-### Add your project links, LinkedIn and photo
-In `src/data.js`:
-- `profile.linkedin` → your LinkedIn **profile** link (`https://www.linkedin.com/in/your-name/`).
-- Each project has `link` (live website) and `code` (GitHub repo). Paste the URLs between the quotes; the
-  "Live site" and "Source code" links appear automatically once filled in. Empty ones stay hidden.
-- Each project also has a **Try sample demo** button (insurance quote, math solver, instrument tones). The demos
-  live in `src/components/Demos.jsx`.
-- Prompt Engineer skills (Claude, Gemini, Microsoft Copilot) are in `promptEngineering` in the same file.
-- Profile photo: your photo is already set up as `public/andy.jpg` (800x800). To change it, replace that file
-  with another square photo using the same name.
-
-### Your details already on the site
-LinkedIn (`https://www.linkedin.com/in/areyesph/`) and GitHub (`https://github.com/exdoorx`) are set in
-`src/data.js`, along with your experience, education and certificates. Still to fill in by you: your real
-`email`, and each project's `link` and `code` URLs.
-
-## 4b. Database & cloud setup (SQL, Supabase, Cloudflare)
-
-These parts are optional. The website works without them.
-
-### Supabase (saves contact-form messages to a real database)
-1. Create a free project at https://supabase.com.
-2. Open **SQL Editor -> New query**, paste all of `database/schema.sql`, click **Run**.
-   This creates the tables for the contact form, food orders, appointments and study tasks, with Row Level Security.
-3. Go to **Project Settings -> API**. Copy the **Project URL** and the **anon public** key.
-4. In the project folder, copy `.env.example` to a new file named `.env` and paste the two values.
-5. Restart `npm run dev`. The contact form now saves to Supabase (read messages in **Table Editor -> contact_messages**).
-6. When you host on Vercel/Netlify/Cloudflare, add the same two variables in the host's **Environment variables** settings.
-
-Never put the `service_role` key in the website code or in `.env`. It is for the Worker only.
-
-### Cloudflare Worker (optional server-side form handler)
-1. Create a free Cloudflare account and install Wrangler: `npm install -g wrangler`, then `wrangler login`.
-2. Edit `cloudflare/wrangler.toml` (your Supabase URL and your website address).
-3. `cd cloudflare`, then `wrangler secret put SUPABASE_SERVICE_KEY` (paste the service_role key), then `wrangler deploy`.
-4. Wrangler prints your Worker URL. To use it, change the `fetch` URL in `src/lib/supabase.js` to that Worker URL and send
-   `{ name, email, message }` as JSON.
-
-### Cloudflare Pages (hosting)
-Cloudflare dashboard -> **Workers & Pages -> Create -> Pages -> Connect to Git** -> pick your repo -> framework **Vite**
-(build `npm run build`, output `dist`) -> Deploy.
-
-## 5. Project structure
+## Project structure
 
 ```
 andy-reyes-portfolio/
-├── .vscode/
-│   ├── extensions.json      # recommended extensions
-│   └── settings.json        # editor settings
-├── public/
-│   └── andy-avatar.svg      # your photo / avatar (served as /andy-avatar.svg)
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx       # top menu + dark mode button
-│   │   ├── Hero.jsx         # intro, typing text, photo
-│   │   ├── Sections.jsx     # About, Skills, Projects, Contact, Footer
-│   │   ├── Career.jsx       # Experience, Education, Certificates, Data & Cloud
-│   │   ├── Demos.jsx        # demo window + insurance, math, sounds demos
-│   │   ├── MoreDemos.jsx    # food order, appointment, calorie, subnet, password, planner demos
-│   │   └── Reveal.jsx       # scroll animation + section title
-│   ├── App.jsx              # puts everything together
-│   ├── lib/supabase.js      # Supabase helper for the contact form
-│   ├── data.js              # ALL your content lives here
-│   ├── index.css            # Tailwind + custom styles
-│   └── main.jsx             # React entry point
-├── database/schema.sql      # SQL tables + security rules (Supabase / PostgreSQL)
-├── cloudflare/              # Worker + wrangler.toml
-├── .env.example
-├── index.html
-├── package.json
+├── index.html                 # page title, SEO/social metadata, JSON-LD, theme bootstrap
 ├── vite.config.js
-└── README.md
+├── eslint.config.js
+├── vitest.config.js
+├── database/schema.sql         # optional PostgreSQL/Supabase schema for the contact form + demos
+├── cloudflare/
+│   ├── wrangler.toml
+│   └── worker.js               # optional server-side contact form endpoint
+├── public/
+│   ├── andy.jpg                # original portrait
+│   ├── andy-480.webp / andy-800.webp
+│   ├── favicon-32.png
+│   ├── apple-touch-icon-180.png
+│   ├── og-image.png
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── sitemap.xml
+└── src/
+    ├── App.jsx
+    ├── main.jsx
+    ├── index.css
+    ├── data.js                 # all portfolio copy, projects, skills, experience
+    ├── hooks/useTheme.js
+    ├── lib/
+    │   ├── contact.js          # contact form delivery (worker / Supabase / mailto fallback)
+    │   ├── mathSolver.js       # expression parser + linear solver
+    │   ├── nutrition.js
+    │   ├── password.js
+    │   ├── subnet.js
+    │   └── *.test.js           # unit tests for the logic above
+    ├── components/
+    │   ├── layout/             # Navbar and Footer
+    │   ├── sections/           # Hero, About, Skills, Projects, Experience, Credentials, Engineering, Contact
+    │   ├── demos/              # in-page interactive demos used by the Projects section
+    │   └── ui/                 # Section, Reveal, Modal, Icons
+    └── ...
 ```
 
-## 6. Put it online (free hosting)
+---
 
-First build check: run `npm run build` — if it finishes without errors, you're ready.
+## Editing content
 
-### Option A — Vercel (easiest, recommended)
-1. Create a free account at https://vercel.com (sign in with GitHub).
-2. Push your project to GitHub (see "GitHub steps" below).
-3. In Vercel click **Add New → Project → Import** your repo.
-4. Vercel auto-detects **Vite**. Leave the defaults (Build: `npm run build`, Output: `dist`) → **Deploy**.
-5. In ~1 minute you get a live link like `https://andy-reyes.vercel.app`. Every `git push` updates it automatically.
+Most copy lives in `src/data.js`:
 
-### Option B — Netlify
-1. https://netlify.com → **Add new site → Import from Git** (or drag-and-drop the `dist` folder after `npm run build`).
-2. Build command `npm run build`, publish directory `dist`.
+- `profile` — name, headline, contact details, availability.
+- `stats` — the short stat strip on the hero.
+- `skillGroups` — the visible capability categories.
+- `projects` — every project card and its demo in `src/components/demos`.
+- `experience`, `education`, `certifications`, `engineering` — background facts.
 
-### Option C — Cloudflare Pages
-https://pages.cloudflare.com → connect GitHub repo → framework preset **Vite** → Deploy. Very fast worldwide.
+To replace the portrait, drop a new `andy.jpg` into `public/` and regenerate `andy-480.webp` / `andy-800.webp`
+(for example with `cwebp`). To add a resume, put a PDF in `public/` and set `profile.resumeUrl`
+(for example `"/andy-reyes-resume.pdf"`). The resume button only appears when that path is set.
 
-### Option D — GitHub Pages
-Works too, but needs extra config (`base` in `vite.config.js` and a deploy workflow). Choose Vercel/Netlify if you want it simple.
+Do **not** add links, metrics, or credentials you cannot verify. This project intentionally avoids fake
+project links, mock metrics, and unsupported claims.
 
-### GitHub steps
+---
+
+## Contact form modes
+
+`src/lib/contact.js` supports three configurations:
+
+1. **Cloudflare Worker (recommended for production)**
+   - Deploy `cloudflare/worker.js` with `wrangler`.
+   - Set `VITE_CONTACT_ENDPOINT` in your deployment environment variables.
+   - Keep `SUPABASE_SERVICE_KEY` only as a Worker secret, never in Vite variables.
+2. **Direct Supabase insert**
+   - Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+   - The database schema enables Row Level Security; messages are write-only from the client.
+3. **Fallback (no environment variables configured)**
+   - The contact form opens the visitor's email client with a pre-composed message.
+
+---
+
+## Accessibility
+
+The UI uses semantic landmarks, labelled controls, visible focus states, aria-expanded navigation,
+trap-and-restore modals, live regions for status, and honors `prefers-reduced-motion`.
+
+---
+
+## Build / Lint / Test
+
 ```bash
-git init
-git add .
-git commit -m "My portfolio"
-git branch -M main
-# create an empty repo on github.com first, then:
-git remote add origin https://github.com/YOUR-USERNAME/andy-reyes-portfolio.git
-git push -u origin main
+npm run lint      # ESLint
+npm test          # Vitest unit tests
+npm run build     # production build
 ```
 
-### Custom domain (optional)
-Buy something like `andyreyes.dev` or `andyreyes.com` (Namecheap, Cloudflare, GoDaddy ~₱600–1,000/year) and connect it in the Vercel/Netlify **Domains** settings.
-
-## 7. Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| `'npm' is not recognized` | Install Node.js, then close and reopen VS Code |
-| `npm install` fails | Delete `node_modules` and `package-lock.json`, run `npm install` again |
-| Port already in use | Vite picks the next port automatically — use the link it prints |
-| Styles look broken | Make sure `src/index.css` is imported in `src/main.jsx` and you ran `npm install` |
-| Photo not showing | The file must be inside `public/` and the name in `Hero.jsx` must match exactly |
-
-Good luck, Andy — congratulations on your graduation! 🎓
+CI runs these three commands on every push via `.github/workflows/ci.yml`.

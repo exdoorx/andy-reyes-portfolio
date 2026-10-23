@@ -30,7 +30,7 @@ create policy "anyone can send a message"
 -- ---------- 2. Food ordering app ----------
 create table if not exists public.menu_items (
   id         bigint generated always as identity primary key,
-  name       text          not null,
+  name       text          not null unique,
   price      numeric(10,2) not null check (price >= 0),
   available  boolean       not null default true
 );
@@ -57,6 +57,12 @@ create index if not exists order_items_order_idx on public.order_items (order_id
 alter table public.menu_items  enable row level security;
 alter table public.orders      enable row level security;
 alter table public.order_items enable row level security;
+
+drop policy if exists "menu is public"            on public.menu_items;
+drop policy if exists "users see own orders"      on public.orders;
+drop policy if exists "users create own orders"   on public.orders;
+drop policy if exists "users see own order items" on public.order_items;
+drop policy if exists "users add items to own orders" on public.order_items;
 
 create policy "menu is public"            on public.menu_items  for select using (available);
 create policy "users see own orders"      on public.orders      for select using (auth.uid() = user_id);
@@ -93,6 +99,11 @@ create unique index if not exists appointments_no_double_booking
 alter table public.services     enable row level security;
 alter table public.appointments enable row level security;
 
+drop policy if exists "services are public"         on public.services;
+drop policy if exists "users see own appointments"  on public.appointments;
+drop policy if exists "users book own appointments" on public.appointments;
+drop policy if exists "users cancel own appointments" on public.appointments;
+
 create policy "services are public"         on public.services     for select using (true);
 create policy "users see own appointments"  on public.appointments for select using (auth.uid() = user_id);
 create policy "users book own appointments" on public.appointments for insert with check (auth.uid() = user_id);
@@ -112,6 +123,7 @@ create table if not exists public.study_tasks (
 create index if not exists study_tasks_user_idx on public.study_tasks (user_id, done);
 
 alter table public.study_tasks enable row level security;
+drop policy if exists "users manage own tasks" on public.study_tasks;
 create policy "users manage own tasks" on public.study_tasks
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -119,7 +131,7 @@ create policy "users manage own tasks" on public.study_tasks
 insert into public.menu_items (name, price) values
   ('Chicken Adobo Rice', 120), ('Pork Sinigang', 150), ('Pancit Canton', 95),
   ('Halo-halo', 85), ('Iced Tea', 45)
-on conflict do nothing;
+on conflict (name) do nothing;
 
 insert into public.services (name, minutes) values
   ('General check-up', 30), ('Dental cleaning', 45), ('Eye exam', 30), ('Consultation', 30)

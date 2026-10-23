@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://areyes-eight.vercel.app/sitemap.xml

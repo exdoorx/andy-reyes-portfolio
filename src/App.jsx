@@ -1,42 +1,32 @@
-import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import {
-  About,
-  Skills,
-  Projects,
-  Contact,
-  Footer,
-} from "./components/Sections";
-import { Experience, Certifications, DataCloud } from "./components/Career";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import Hero from "./components/sections/Hero";
+import About from "./components/sections/About";
+import Skills from "./components/sections/Skills";
+import Projects from "./components/sections/Projects";
+import Experience from "./components/sections/Experience";
+import Certifications from "./components/sections/Certifications";
+import Engineering from "./components/sections/Engineering";
+import Contact from "./components/sections/Contact";
+import useTheme from "./hooks/useTheme";
 
 export default function App() {
-  const [dark, setDark] = useState(() => {
-    try {
-      const saved = localStorage.getItem("theme");
-      if (saved) return saved === "dark";
-    } catch {}
-    return true;
-  });
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    try {
-      localStorage.setItem("theme", dark ? "dark" : "light");
-    } catch {}
-  }, [dark]);
+  const { dark, toggleDark } = useTheme();
 
   return (
     <>
-      <Navbar dark={dark} toggleDark={() => setDark(!dark)} />
-      <main>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <Navbar dark={dark} toggleDark={toggleDark} />
+      <main id="main-content">
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Experience />
         <Certifications />
-        <DataCloud />
+        <Engineering />
         <Contact />
       </main>
       <Footer />

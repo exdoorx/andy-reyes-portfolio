@@ -1,205 +1,326 @@
 // ============================================================
-//  EDIT THIS FILE to update your portfolio content.
-//  Everything on the website reads from here.
+//  Portfolio content
+//  Update this file to change the copy, projects, and links.
+//  Keep claims factual: every project below is a working demo
+//  in this repository unless its status says otherwise.
 // ============================================================
+
+export const site = {
+  url: "https://areyes-eight.vercel.app",
+  title: "Andy Reyes | Software Developer & Technical Support",
+  description:
+    "Portfolio of Andy Reyes, a software developer and technical support professional focused on practical web applications, AI automation, and reliable troubleshooting.",
+};
 
 export const profile = {
   name: "Andy Reyes",
-  age: 26,
-  role: "Network Security Specialist · Software Development",
-  roles: [
-    "Network Security Researcher",
-    "Software Development",
-    "Technical Support Specialist",
-    "Master Prompt Engineer",
-    "TESDA NC II & NC III Certified",
-    "Automation Specialist",
-  ],
-  school: "San Sebastian College - Recoletos de Manila",
-  course: "Bachelor of Science in Information Technology",
+  firstName: "Andy",
+  headline: "Software Developer | AI Automation | Technical Support",
+  shortRole: "Software Developer & Technical Support",
   location: "Quezon City, Philippines",
-
   email: "areyes.ph02@gmail.com",
-
   github: "https://github.com/exdoorx",
   linkedin: "https://www.linkedin.com/in/areyesph/",
+  // Add a real PDF to public/ first, then set this to e.g. "/andy-reyes-resume.pdf".
+  // The download button stays hidden while this is empty.
+  resumeUrl: "",
+  availability:
+    "Open to software development, AI automation, and technical support roles.",
+  school: "San Sebastian College - Recoletos de Manila",
+  course: "Bachelor of Science in Information Technology",
   about: [
-    "I am an Information Technology professional with hands-on experience in software development, technical support, and network security.",
-    "From May 2022 to November 2025, I developed a strong foundation in software development and technical support, focusing on troubleshooting, customer service, and client satisfaction. During my tenure as a Technical Support Specialist at ZOOSK LIMITED, I utilized Python and security intelligence to conduct technical investigations and solve complex problems.",
-    "I hold TESDA NC II and NC III certifications and am continuously advancing my expertise in Software Development, AI automation, and Cybersecurity at the Institute of Applied Technology. I also specialize in prompt engineering and AI-assisted workflows, leveraging tools like Claude, Google Gemini, and Microsoft Copilot to optimize productivity.",
+    "I'm an IT professional with hands-on experience in software development support, technical support, and network security. I enjoy turning messy technical problems into clear, reliable solutions.",
+    "At ZOOSK Limited, I used Python and security intelligence to investigate complex technical issues and supported customers through resolution. I've also worked in remote technical roles that required clear communication, careful troubleshooting, and a customer-first approach.",
+    "I hold TESDA NC II and NC III certifications and continue building my skills in software development, AI automation, and cybersecurity. I use Claude, Google Gemini, and Microsoft Copilot to speed up research, prototyping, and repetitive workflows — while keeping the final implementation reviewed and intentional.",
   ],
 };
 
 export const stats = [
-  { value: "3+", label: "Years in IT roles" },
-  { value: "9", label: "Projects & demos" },
-  { value: "7", label: "Certificates" },
-  { value: "IT", label: "Field of Expertise" },
+  { value: "3+", label: "Years in technical roles" },
+  { value: "9", label: "Working in-page demos" },
+  { value: "7", label: "Certificates & workshops" },
+  { value: "BSIT", label: "Information Technology" },
 ];
 
-export const skills = [
-  { name: "Network Services & Defense", level: 88 },
-  { name: "Technical Support & Troubleshooting", level: 88 },
-  { name: "HTML, CSS & JavaScript", level: 80 },
-  { name: "React & Tailwind CSS", level: 72 },
-  { name: "Python & Security Intelligence", level: 70 },
-  { name: "SQL & Databases", level: 72 },
+export const skillGroups = [
+  {
+    title: "Programming & Frontend",
+    icon: "⌘",
+    description: "Building responsive, accessible interfaces with modern JavaScript.",
+    items: ["JavaScript (ES6+)", "HTML5", "CSS3", "React", "Tailwind CSS", "Responsive UI"],
+  },
+  {
+    title: "Development Tools",
+    icon: "⚙",
+    description: "The day-to-day tools I use to build, test, and ship.",
+    items: ["Git", "GitHub", "VS Code", "Vite", "Node.js", "npm"],
+  },
+  {
+    title: "AI & Automation",
+    icon: "✦",
+    description: "Using AI deliberately for research, prototyping, and repeatable workflows.",
+    items: [
+      "Prompt engineering",
+      "Claude",
+      "Google Gemini",
+      "Microsoft Copilot",
+      "AI-assisted development",
+      "Workflow automation",
+    ],
+  },
+  {
+    title: "Data, APIs & Cloud",
+    icon: "◇",
+    description: "Working with relational data, APIs, and lightweight cloud services.",
+    items: ["SQL / PostgreSQL", "Supabase", "REST APIs", "Cloudflare Workers", "Row Level Security"],
+  },
+  {
+    title: "Technical Support",
+    icon: "◎",
+    description: "Investigating problems and communicating fixes clearly to real users.",
+    items: [
+      "Technical troubleshooting",
+      "Issue investigation",
+      "Customer communication",
+      "Documentation",
+      "Remote support",
+    ],
+  },
+  {
+    title: "Network & Security",
+    icon: "⬡",
+    description: "Networking fundamentals and security-minded problem solving.",
+    items: ["Network services", "Network defense", "Security intelligence", "IPv4 / subnetting", "Security fundamentals"],
+  },
 ];
 
-export const tools = [
-  "VS Code",
-  "Git & GitHub",
-  "JavaScript",
-  "React",
-  "Tailwind CSS",
-  "Python",
-  "SQL / PostgreSQL",
-  "Supabase",
-  "Cloudflare",
-  "Node.js",
-  "Network Services",
-  "Network Defense",
-  "Security Intelligence",
-  "MS Office",
-];
-
-// type: used by the filter buttons. badge: small label on the card.
+// type is used by the filter buttons. Every demo below is implemented
+// in src/components/demos and runs entirely in the browser.
 export const projects = [
   {
-    title: "Enterprise Insurance Portal",
+    id: "insurance",
+    title: "Insurance Plan Comparison Portal",
     type: "Web",
+    status: "Interactive prototype",
     emoji: "🛡️",
-    gradient: "from-indigo-500 to-cyan-400",
-    description:
-      "A professional-grade insurance portal featuring dynamic plan comparisons and a secure client inquiry system. Optimized for high conversion and accessibility.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    accent: "#6366f1",
+    summary:
+      "A quote estimator that makes plan differences easy to compare before a customer talks to an agent.",
+    problem:
+      "Insurance plan details are difficult to compare when coverage, age, and plan tiers all change the price.",
+    role: "Designed the comparison flow and built the interactive quote calculator and responsive layout.",
+    features: [
+      "Age and coverage controls",
+      "Three plan tiers with plain-language perks",
+      "Instant monthly premium estimate",
+    ],
+    technical:
+      "Client-side pricing logic combines coverage, age band, and plan multiplier. No data leaves the browser.",
+    tech: ["React", "Tailwind CSS", "State-driven forms"],
     demo: "insurance",
-    link: "https://insurance-demo.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/insurance-portal", // Sample repo link
   },
   {
-    title: "Advanced Math Solver",
-    type: "App",
+    id: "math",
+    title: "Step-by-Step Math Solver",
+    type: "Tool",
+    status: "Working tool",
     emoji: "➗",
-    gradient: "from-emerald-400 to-cyan-400",
-    description:
-      "A comprehensive educational tool that solves complex mathematical problems with step-by-step pedagogical explanations to enhance student learning.",
-    tags: ["Algorithm Design", "UI/UX", "Mathematical Logic"],
+    accent: "#10b981",
+    summary:
+      "A small expression engine that evaluates arithmetic and solves linear equations with visible steps.",
+    problem:
+      "A calculator gives an answer, but it rarely shows how the answer was reached.",
+    role: "Built the tokenizer, recursive-descent parser, equation solver, and the interface around it.",
+    features: [
+      "Operator precedence and parentheses",
+      "Implicit multiplication such as 3(x - 2)",
+      "Linear equation solving with step explanations",
+      "Friendly errors for invalid input",
+    ],
+    technical:
+      "A hand-written tokenizer and recursive-descent parser support +, −, ×, ÷, powers, unary signs, parentheses, and a single variable.",
+    tech: ["React", "JavaScript", "Parsing"],
     demo: "math",
-    link: "https://math-solver.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/math-solver", // Sample repo link
   },
   {
-    title: "Ethno-Acoustic Library",
+    id: "sounds",
+    title: "Ethno-Acoustic Instrument Explorer",
     type: "App",
+    status: "Interactive prototype",
     emoji: "🎻",
-    gradient: "from-fuchsia-500 to-orange-400",
-    description:
-      "A cultural preservation app that archives and plays traditional instrument sounds from around the world, combining heritage with modern interactive audio technology.",
-    tags: ["Web Audio API", "Interactive Media", "Cultural Heritage"],
+    accent: "#d946ef",
+    summary:
+      "A cultural reference that introduces traditional Philippine instruments and plays synthesized tone previews.",
+    problem:
+      "Instrument references are often text-only, and external audio files are slow or unavailable.",
+    role: "Built the instrument browser, the Web Audio tone generator, and the accompanying scale guide.",
+    features: [
+      "Four traditional instruments with context",
+      "Locally synthesized reference tones",
+      "Scale and accompaniment suggestions",
+      "Works without external audio files",
+    ],
+    technical:
+      "Tone previews are generated with the Web Audio API oscillators, so the demo has no CDN dependency or audio licensing issue. They are synthesized references, not recordings.",
+    tech: ["React", "Web Audio API", "Interaction design"],
     demo: "sounds",
-    link: "https://culture-sounds.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/ethno-sounds", // Sample repo link
   },
   {
-    title: "Full-Stack Food Ordering System",
+    id: "order",
+    title: "Food Ordering Interface",
     type: "App",
-    badge: "Production Ready",
+    status: "Interactive prototype",
     emoji: "🍔",
-    gradient: "from-orange-500 to-rose-500",
-    description:
-      "A complete e-commerce solution for food delivery featuring real-time cart management and a PostgreSQL backend for order tracking and inventory.",
-    tags: ["React", "State Management", "Supabase/Postgres"],
+    accent: "#f97316",
+    summary:
+      "A compact ordering flow with menu browsing, quantity controls, a live cart total, and a checkout summary.",
+    problem:
+      "Small food businesses need a clear ordering flow that stays understandable on a phone.",
+    role: "Built the menu, cart state, quantity handling, and checkout confirmation flow.",
+    features: [
+      "Responsive product grid",
+      "Live item count and order total",
+      "Quantity controls with empty-cart handling",
+      "Simulated order confirmation",
+    ],
+    technical:
+      "Cart state is normalized by item id, with derived totals calculated from the menu source of truth. Checkout is intentionally a client-side simulation.",
+    tech: ["React", "State management", "Responsive UI"],
     demo: "order",
-    link: "https://food-order-demo.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/food-ordering-system", // Sample repo link
   },
   {
-    title: "Healthcare Booking Engine",
+    id: "appointment",
+    title: "Clinic Appointment Scheduler",
     type: "Web",
-    badge: "Production Ready",
+    status: "Interactive prototype",
     emoji: "🗓️",
-    gradient: "from-sky-500 to-indigo-500",
-    description:
-      "A high-availability appointment scheduling system with built-in collision detection to prevent double-booking and automate clinic workflows.",
-    tags: ["Form Validation", "Scheduling Logic", "PostgreSQL"],
+    accent: "#0ea5e9",
+    summary:
+      "A booking form that prevents incomplete appointments and makes unavailable time slots obvious.",
+    problem:
+      "Manual appointment booking leads to double entries, missed fields, and unclear availability.",
+    role: "Implemented the service/date/time flow, simulated availability, and confirmation state.",
+    features: [
+      "Service selection",
+      "Date-aware slot availability",
+      "Required customer details",
+      "Confirmation summary",
+    ],
+    technical:
+      "Slot availability is deterministic for each date so the demo behaves consistently. A production version would enforce the same rule with a unique database index.",
+    tech: ["React", "Form validation", "Scheduling logic"],
     demo: "appointment",
-    link: "https://health-book.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/appointment-booking", // Sample repo link
   },
   {
-    title: "Nutritional Analysis Tool",
-    type: "App",
-    badge: "Production Ready",
+    id: "nutrition",
+    title: "Nutrition Target Calculator",
+    type: "Tool",
+    status: "Working tool",
     emoji: "🥗",
-    gradient: "from-lime-400 to-emerald-500",
-    description:
-      "A health-tech application that calculates daily macronutrient targets based on biometric data and fitness goals using validated nutritional formulas.",
-    tags: ["HealthTech", "Biometric Logic", "UI Design"],
+    accent: "#22c55e",
+    summary:
+      "A health-tech calculator that estimates daily calories and macronutrient targets from body data and goals.",
+    problem:
+      "Generic calorie numbers ignore body size, activity level, and the user's goal.",
+    role: "Built the calculator and the responsive results presentation.",
+    features: [
+      "Mifflin-St Jeor BMR estimate",
+      "Activity-adjusted daily calories",
+      "Protein, carbohydrate, and fat targets",
+      "Clear non-medical disclaimer",
+    ],
+    technical:
+      "Calculations run locally and update immediately. Protein ranges vary by goal, and the interface labels the output as a general estimate rather than medical advice.",
+    tech: ["React", "Health calculations", "Accessible forms"],
     demo: "calorie",
-    link: "https://nutrition-calc.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/calorie-protein-calc", // Sample repo link
   },
   {
-    title: "Network Subnet Architect",
+    id: "subnet",
+    title: "IPv4 Subnet Calculator",
     type: "Tool",
-    badge: "Production Ready",
+    status: "Working tool",
     emoji: "🌐",
-    gradient: "from-cyan-400 to-blue-600",
-    description:
-      "A precision networking tool for calculating IPv4 subnet masks, broadcast addresses, and usable host ranges, tailored for network engineers.",
-    tags: ["Network Engineering", "IPv4", "Binary Logic"],
+    accent: "#0891b2",
+    summary:
+      "A networking utility that converts CIDR notation into network, broadcast, and usable host ranges.",
+    problem:
+      "Manual subnet math is error-prone, especially at /31 and /32 where the usual host-count formula breaks.",
+    role: "Implemented the CIDR parser, bitwise calculations, and input validation.",
+    features: [
+      "CIDR parsing and octet validation",
+      "Network and broadcast addresses",
+      "First/last usable host",
+      "Correct /31 and /32 handling",
+    ],
+    technical:
+      "Uses unsigned 32-bit integer operations and handles the RFC 3021 point-to-point /31 case separately from /32.",
+    tech: ["React", "JavaScript", "Networking"],
     demo: "subnet",
-    link: "https://subnet-calc.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/subnet-calculator", // Sample repo link
   },
   {
-    title: "Cyber-Security Password Auditor",
+    id: "password",
+    title: "Password Strength Auditor",
     type: "Tool",
-    badge: "Production Ready",
+    status: "Working tool",
     emoji: "🔐",
-    gradient: "from-violet-500 to-fuchsia-500",
-    description:
-      "A privacy-first security tool that analyzes password entropy and provides real-time strength auditing without transmitting data to any server.",
-    tags: ["Information Security", "Entropy Analysis", "Client-side Privacy"],
+    accent: "#8b5cf6",
+    summary:
+      "A privacy-first password check that estimates entropy and explains which requirements are missing.",
+    problem:
+      "Password meters often reward complexity while ignoring length, which is the strongest driver of resistance to guessing.",
+    role: "Built the entropy estimator, requirement checks, and client-only interface.",
+    features: [
+      "Character-pool entropy estimate",
+      "Length and character-class checks",
+      "No network requests",
+      "No password storage",
+    ],
+    technical:
+      "The password never leaves the page. The estimate uses the size of the character pool actually used and the password length.",
+    tech: ["React", "Security basics", "Client-side privacy"],
     demo: "password",
-    link: "https://password-audit.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/password-auditor", // Sample repo link
   },
   {
-    title: "Academic Task Orchestrator",
+    id: "planner",
+    title: "Academic Task Planner",
     type: "App",
-    badge: "Production Ready",
+    status: "Working tool",
     emoji: "📚",
-    gradient: "from-amber-400 to-orange-500",
-    description:
-      "A productivity application for students that implements priority-based task scheduling and progress tracking for academic workloads.",
-    tags: ["React", "State Management", "Productivity"],
+    accent: "#eab308",
+    summary:
+      "A focused task list for students with priorities, completion tracking, and local persistence.",
+    problem:
+      "Students need a lightweight place to capture and prioritize coursework without another account.",
+    role: "Built the task model, priority handling, progress counter, and local storage persistence.",
+    features: [
+      "Add tasks with High/Medium/Low priority",
+      "Toggle completion and filter active work",
+      "Progress summary",
+      "Survives a page refresh via localStorage",
+    ],
+    technical:
+      "Tasks are persisted locally and guarded against malformed stored data. No account or server is required.",
+    tech: ["React", "localStorage", "Accessibility"],
     demo: "planner",
-    link: "https://planner-demo.vercel.app", // Sample live link
-    code: "https://github.com/exdoorx/planner-app", // Sample repo link
   },
 ];
 
-// Prompt engineering specialization
 export const promptEngineering = {
-  title: "Prompt Engineer & Software Developer",
+  title: "AI-assisted development, with review built in",
   summary:
-    "I specialize in designing structured, high-fidelity prompts and building robust software solutions that extract reliable, high-quality results from Large Language Models (LLMs) for software development, automation, and problem-solving.",
+    "I use AI tools to explore options, draft code, and remove repetitive work — then review, test, and adapt the result. The goal is faster delivery without handing over judgment.",
   specialties: [
-    { name: "Claude", note: "Anthropic", icon: "🟠" },
-    { name: "Gemini", note: "Google", icon: "🔷" },
-    { name: "Microsoft Copilot", note: "Microsoft", icon: "🟦" },
+    { name: "Claude", note: "Anthropic", icon: "C" },
+    { name: "Gemini", note: "Google", icon: "G" },
+    { name: "Microsoft Copilot", note: "Microsoft", icon: "M" },
   ],
   abilities: [
-    "AI-Assisted Software Development",
-    "Full-Stack Application Design & Implementation",
-    "Strategic Role and Context Framing",
-    "Chain-of-Thought and Multi-step Reasoning",
-    "Few-shot Prompting and Output Specification",
-    "Iterative Prompt Testing and Optimization",
-    "AI Workflow Automation & Integration",
-    "Debugging, Refactoring & Code Generation",
+    "Structured prompting and context design",
+    "AI-assisted prototyping and refactoring",
+    "Iterative testing and prompt refinement",
+    "Workflow automation",
+    "Reviewing generated code before shipping",
+    "Clear documentation of decisions",
   ],
 };
 
@@ -209,16 +330,24 @@ export const experience = [
     org: "Xbox Developer",
     kind: "Full-time",
     period: "May 2023 – Present",
-    place: "Quezon City, National Capital Region, Philippines · Remote",
+    place: "Quezon City, Philippines · Remote",
+    bullets: [
+      "Apply network services and network defense practices to investigate and resolve technical issues.",
+      "Work in a remote technical environment that requires clear documentation and communication.",
+    ],
     skills: ["Network Services", "Network Defense"],
   },
   {
     title: "Technical Support Specialist",
     org: "ZOOSK LIMITED",
     kind: "Full-time",
-    period: "Aug 2022 – Apr 2023 · 9 mos",
+    period: "Aug 2022 – Apr 2023",
     place: "Canada · Remote",
-    skills: ["Python", "Security Intelligence", "+1 more skill"],
+    bullets: [
+      "Used Python and security intelligence to conduct technical investigations and resolve complex customer issues.",
+      "Supported customers through troubleshooting and clear communication, with a focus on client satisfaction.",
+    ],
+    skills: ["Python", "Security Intelligence", "Technical Support"],
   },
   {
     title: "On-the-Job Training (OJT)",
@@ -226,36 +355,43 @@ export const experience = [
     kind: "Internship",
     period: "OJT certificate issued Nov 2023",
     place: "San Juan City, Philippines",
+    bullets: [
+      "Provided office IT support and assisted with day-to-day technical requests.",
+    ],
     skills: ["Office IT Support"],
-  },
-  {
-    title: "Volunteer",
-    org: "Parish Pastoral Council for Responsible Voting (PPCRV)",
-    kind: "Full-time",
-    period: "May 2018 – Jun 2018 · 2 mos",
-    place: "Puerto Princesa, Mimaropa, Philippines · On-site",
-    skills: ["Community Service", "Volunteering"],
   },
   {
     title: "Information Technology Support Specialist",
     org: "City Government of Puerto Princesa",
     kind: "Internship",
-    period: "Apr 2018 – Jun 2018 · 3 mos",
-    place: "Puerto Princesa, Mimaropa, Philippines · On-site",
-    skills: ["Network Services"],
+    period: "Apr 2018 – Jun 2018",
+    place: "Puerto Princesa, Philippines · On-site",
+    bullets: [
+      "Provided IT support and assisted with network services for local government operations.",
+    ],
+    skills: ["Network Services", "IT Support"],
+  },
+  {
+    title: "Volunteer",
+    org: "Parish Pastoral Council for Responsible Voting (PPCRV)",
+    kind: "Volunteer",
+    period: "May 2018 – Jun 2018",
+    place: "Puerto Princesa, Philippines · On-site",
+    bullets: ["Assisted with community voting operations and on-site coordination."],
+    skills: ["Community Service", "Coordination"],
   },
 ];
 
 export const education = [
   {
     school: "Institute of Applied Technology",
-    program: "Microskills and Fundamentals, Network, Cloud and Cybersecurity",
+    program: "Microskills and Fundamentals — Network, Cloud and Cybersecurity",
     period: "Jan 2026 – Present",
-    skills: ["Network Services", "Technology Services", "+3 skills"],
+    skills: ["Network Services", "Cloud Fundamentals", "Cybersecurity"],
   },
   {
     school: "San Sebastian College - Recoletos de Manila",
-    program: "Bachelor of Science, Information Technology",
+    program: "Bachelor of Science in Information Technology",
     period: "Jun 2019 – May 2022",
     skills: [],
   },
@@ -304,25 +440,25 @@ export const certifications = [
   },
 ];
 
-export const dataCloud = [
+export const engineering = [
   {
-    name: "SQL / PostgreSQL",
+    name: "PostgreSQL & Supabase",
     icon: "🗄️",
-    text: "Relational schema for orders, appointments, tasks and contact messages, with keys, constraints and indexes. File: database/schema.sql",
+    text: "A relational schema for contact messages, orders, appointments, and study tasks, with constraints and Row Level Security policies.",
   },
   {
-    name: "Supabase",
+    name: "Cloudflare Worker",
     icon: "⚡",
-    text: "Hosted Postgres with Row Level Security. The contact form on this site can save messages to Supabase when you add your keys.",
+    text: "An optional server-side form handler that validates posts and keeps the Supabase service-role key off the client.",
   },
   {
-    name: "Cloudflare",
-    icon: "🌩️",
-    text: "Cloudflare Pages for fast hosting and a Cloudflare Worker (cloudflare/worker.js) that validates form posts before they reach the database.",
+    name: "Vercel deployment",
+    icon: "▲",
+    text: "The production build is served from Vercel with a static SPA output and environment variables kept out of source control.",
   },
   {
-    name: "GitHub & CI",
-    icon: "🐙",
-    text: "Source on GitHub with automatic deploys to Vercel, Netlify or Cloudflare Pages on every push.",
+    name: "GitHub Actions",
+    icon: "✓",
+    text: "CI runs linting, unit tests, and the production build on every push so the deployed site stays reproducible.",
   },
 ];
