@@ -163,3 +163,12 @@ export function Database({ className = "h-5 w-5" }) {
     </svg>
   );
 }
+
+export function Cube({ className = "h-5 w-5" }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} {...base}>
+      <path d="M12 2.7 20.5 7v10L12 21.3 3.5 17V7L12 2.7Z" />
+      <path d="M3.7 7.2 12 11.6l8.3-4.4M12 11.6v9.4" />
+    </svg>
+  );
+}

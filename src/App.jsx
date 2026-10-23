@@ -6,6 +6,7 @@ import Skills from "./components/sections/Skills";
 import Projects from "./components/sections/Projects";
 import Experience from "./components/sections/Experience";
 import Certifications from "./components/sections/Certifications";
+import Playground from "./components/sections/Playground";
 import Engineering from "./components/sections/Engineering";
 import Contact from "./components/sections/Contact";
 import useTheme from "./hooks/useTheme";
@@ -26,6 +27,7 @@ export default function App() {
         <Projects />
         <Experience />
         <Certifications />
+        <Playground />
         <Engineering />
         <Contact />
       </main>

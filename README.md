@@ -72,7 +72,7 @@ andy-reyes-portfolio/
     │   └── *.test.js           # unit tests for the logic above
     ├── components/
     │   ├── layout/             # Navbar and Footer
-    │   ├── sections/           # Hero, About, Skills, Projects, Experience, Credentials, Engineering, Contact
+    │   ├── sections/           # Hero, About, Skills, Projects, Experience, Credentials, Playground, Engineering, Contact
     │   ├── demos/              # in-page interactive demos used by the Projects section
     │   └── ui/                 # Section, Reveal, Modal, Icons
     └── ...
@@ -89,6 +89,7 @@ Most copy lives in `src/data.js`:
 - `skillGroups` — the visible capability categories.
 - `projects` — every project card and its demo in `src/components/demos`.
 - `experience`, `education`, `certifications`, `engineering` — background facts.
+- `playground` — the Hack The Box card (level 26, codename spectreAce, Hacker rank) and the n8n/OpenCode automation playground; keep these in sync with the linked profiles.
 
 To replace the portrait, drop a new `andy.jpg` into `public/` and regenerate `andy-480.webp` / `andy-800.webp`
 (for example with `cwebp`). To add a resume, put a PDF in `public/` and set `profile.resumeUrl`

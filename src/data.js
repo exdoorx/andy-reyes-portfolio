@@ -37,7 +37,7 @@ export const profile = {
 
 export const stats = [
   { value: "3+", label: "Years in technical roles" },
-  { value: "9", label: "Working in-page demos" },
+  { value: "10", label: "Working in-page demos" },
   { value: "7", label: "Certificates & workshops" },
   { value: "BSIT", label: "Information Technology" },
 ];
@@ -61,6 +61,8 @@ export const skillGroups = [
     description: "Using AI deliberately for research, prototyping, and repeatable workflows.",
     items: [
       "Prompt engineering",
+      "n8n workflows",
+      "OpenCode AI agents",
       "Claude",
       "Google Gemini",
       "Microsoft Copilot",
@@ -303,6 +305,30 @@ export const projects = [
     tech: ["React", "localStorage", "Accessibility"],
     demo: "planner",
   },
+  {
+    id: "n8n",
+    title: "n8n Automation Workflow Simulator",
+    type: "Automation",
+    status: "Interactive prototype",
+    emoji: "",
+    accent: "#ea4b71",
+    summary:
+      "A browser simulator of an n8n-style automation: webhook trigger, validation, an OpenCode AI agent triage step, and a priority-based branch.",
+    problem:
+      "Automation branches are hard to reason about before building them — a wrong route or missing validation is usually discovered only after a flow goes live.",
+    role:
+      "Designed the workflow diagram and built the animated execution simulator, the branch decision logic, and the run-log trace.",
+    features: [
+      "Webhook trigger with selectable mock payloads",
+      "OpenCode AI agent triage step that classifies each request",
+      "Priority branch routing urgent vs normal items",
+      "Animated node-by-node execution with a run log",
+    ],
+    technical:
+      "Entirely client-side: execution order, the branch decision, and log traces are computed from a mock payload. A live deployment would run the same workflow shape in an n8n instance.",
+    tech: ["n8n", "OpenCode AI agents", "Webhooks", "React"],
+    demo: "n8n",
+  },
 ];
 
 export const promptEngineering = {
@@ -310,6 +336,7 @@ export const promptEngineering = {
   summary:
     "I use AI tools to explore options, draft code, and remove repetitive work — then review, test, and adapt the result. The goal is faster delivery without handing over judgment.",
   specialties: [
+    { name: "OpenCode agents", note: "Terminal AI agents", icon: "⌘" },
     { name: "Claude", note: "Anthropic", icon: "C" },
     { name: "Gemini", note: "Google", icon: "G" },
     { name: "Microsoft Copilot", note: "Microsoft", icon: "M" },
@@ -322,6 +349,25 @@ export const promptEngineering = {
     "Reviewing generated code before shipping",
     "Clear documentation of decisions",
   ],
+};
+
+// Playgrounds: verified facts only. The HTB level, rank, and codename come
+// from the linked profile; update them there first, then here.
+export const playground = {
+  htb: {
+    platform: "Hack The Box",
+    url: "https://profile.hackthebox.com/profile/01a1686f-d47e-72c2-9a9c-21e207a23101",
+    codename: "spectreAce",
+    level: 26,
+    rank: "Hacker",
+    blurb:
+      "Hands-on security challenges used to keep network and security fundamentals sharp outside of work hours.",
+  },
+  automation: {
+    title: "AI workflow playground",
+    text: "Building event-driven automations with n8n and OpenCode AI agents — webhook triggers, triage steps, and branching logic that remove repetitive work.",
+    action: { label: "Try the n8n demo", href: "#projects" },
+  },
 };
 
 export const experience = [

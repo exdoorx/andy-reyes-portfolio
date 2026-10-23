@@ -1,5 +1,5 @@
-import { profile } from "../../data";
-import { ArrowUpRight, GitHub, LinkedIn, Mail } from "../ui/Icons";
+import { profile, playground } from "../../data";
+import { ArrowUpRight, Cube, GitHub, LinkedIn, Mail } from "../ui/Icons";
 
 export default function Footer() {
   return (
@@ -45,6 +45,15 @@ export default function Footer() {
               >
                 <LinkedIn />
               </a>
+              <a
+                href={playground.htb.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-button"
+                aria-label="Hack The Box profile"
+              >
+                <Cube />
+              </a>
             </div>
           </div>
 
@@ -58,14 +67,17 @@ export default function Footer() {
             <a href="#skills" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
               Skills
             </a>
-            <a href="#contact" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
-              Contact
-            </a>
             <a href="#experience" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
               Experience
             </a>
             <a href="#credentials" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
               Credentials
+            </a>
+            <a href="#playground" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
+              Playground
+            </a>
+            <a href="#contact" className="text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white">
+              Contact
             </a>
           </div>
         </div>
