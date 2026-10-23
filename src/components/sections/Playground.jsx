@@ -123,7 +123,7 @@ export default function Playground() {
             </p>
 
             <ul className="mt-5 flex flex-wrap gap-1.5">
-              {["n8n", "OpenCode AI agents", "Event-driven workflows"].map((item) => (
+              {automation.chips.map((item) => (
                 <li key={item} className="chip text-[11px]">
                   {item}
                 </li>

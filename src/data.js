@@ -67,6 +67,8 @@ export const skillGroups = [
       "Google Gemini",
       "Microsoft Copilot",
       "AI-assisted development",
+      "Social media automation",
+      "Customer service automation",
       "Workflow automation",
     ],
   },
@@ -310,23 +312,23 @@ export const projects = [
     title: "n8n Automation Workflow Simulator",
     type: "Automation",
     status: "Interactive prototype",
-    emoji: "",
+    emoji: "🤖",
     accent: "#ea4b71",
     summary:
-      "A browser simulator of an n8n-style automation: webhook trigger, validation, an OpenCode AI agent triage step, and a priority-based branch.",
+      "A browser simulator of three n8n-style automations — customer support triage, customer service replies, and social media marketing — each driven by an OpenCode AI agent step.",
     problem:
       "Automation branches are hard to reason about before building them — a wrong route or missing validation is usually discovered only after a flow goes live.",
     role:
-      "Designed the workflow diagram and built the animated execution simulator, the branch decision logic, and the run-log trace.",
+      "Designed the workflow diagrams and built the animated execution simulator, the three sample workflow templates, branch decision logic, and the run-log trace.",
     features: [
-      "Webhook trigger with selectable mock payloads",
-      "OpenCode AI agent triage step that classifies each request",
-      "Priority branch routing urgent vs normal items",
+      "Three sample workflows: support triage, customer service, social media marketing",
+      "OpenCode AI agent step on every flow (triage, reply drafting, copywriting)",
+      "Branch routing that changes with the mock payload",
       "Animated node-by-node execution with a run log",
     ],
     technical:
-      "Entirely client-side: execution order, the branch decision, and log traces are computed from a mock payload. A live deployment would run the same workflow shape in an n8n instance.",
-    tech: ["n8n", "OpenCode AI agents", "Webhooks", "React"],
+      "Entirely client-side: execution order, the branch decision, and log traces are computed from a mock payload per template. A live deployment would run the same workflow shapes in an n8n instance.",
+    tech: ["n8n", "OpenCode AI agents", "Social media & support flows", "React"],
     demo: "n8n",
   },
 ];
@@ -365,7 +367,8 @@ export const playground = {
   },
   automation: {
     title: "AI workflow playground",
-    text: "Building event-driven automations with n8n and OpenCode AI agents — webhook triggers, triage steps, and branching logic that remove repetitive work.",
+    text: "Building n8n automations with OpenCode AI agents — support triage, customer service replies, and social media marketing flows that remove repetitive work.",
+    chips: ["n8n", "OpenCode AI agents", "Social media marketing", "Customer service"],
     action: { label: "Try the n8n demo", href: "#projects" },
   },
 };
