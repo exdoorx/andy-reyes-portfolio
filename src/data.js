@@ -24,7 +24,7 @@ export const profile = {
   github: "https://github.com/exdoorx",
   linkedin: "https://www.linkedin.com/in/areyesph/",
   about: [
-    "I am an Information Technology professional with an educational background in BSIT from San Sebastian College – Recoletos de Manila and hands-on experience in software development, technical support, and network security.",
+    "I am an Information Technology professional with hands-on experience in software development, technical support, and network security.",
     "From May 2022 to November 2025, I developed a strong foundation in software development and technical support, focusing on troubleshooting, customer service, and client satisfaction. During my tenure as a Technical Support Specialist at ZOOSK LIMITED, I utilized Python and security intelligence to conduct technical investigations and solve complex problems.",
     "I hold TESDA NC II and NC III certifications and am continuously advancing my expertise in Software Development, AI automation, and Cybersecurity at the Institute of Applied Technology. I also specialize in prompt engineering and AI-assisted workflows, leveraging tools like Claude, Google Gemini, and Microsoft Copilot to optimize productivity.",
   ],
@@ -34,7 +34,7 @@ export const stats = [
   { value: "3+", label: "Years in IT roles" },
   { value: "9", label: "Projects & demos" },
   { value: "7", label: "Certificates" },
-  { value: "BSIT", label: "Degree earned" },
+  { value: "IT", label: "Field of Expertise" },
 ];
 
 export const skills = [

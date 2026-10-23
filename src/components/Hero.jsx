@@ -62,7 +62,7 @@ export default function Hero() {
           </p>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-400 md:mx-0">
-            {profile.course} graduate with remote experience in network security
+            Network Security Specialist and Software Developer with remote experience in network security
             and technical support. I also build clean, useful web and app
             projects.
           </p>
