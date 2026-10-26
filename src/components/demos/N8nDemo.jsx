@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { demoGhost, demoLabel } from "./demoStyles";
 
 // Three sample automations in the shape of n8n workflows. The demo only
@@ -227,6 +227,13 @@ export default function N8nDemo() {
     typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
+  const mounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   const template = TEMPLATES.find((item) => item.id === templateId) ?? TEMPLATES[0];
   const option =
@@ -260,29 +267,47 @@ export default function N8nDemo() {
 
     const stepDelay = reducedMotion.current ? 40 : 620;
     const appended = [];
+
+    // Safety check for template consistency
+    const nodes = new Set(template.nodes.map(n => n.id));
+
     const pushLog = (text) => {
+      if (!mounted.current) return;
       appended.push(text);
       setLogs([...appended]);
     };
 
-    for (const step of option.steps) {
-      const edge = template.edges.find((item) => item.to === step.id);
-      if (edge) {
-        setFlowEdge(edge.id);
-        await sleep(stepDelay / 2);
+    try {
+      for (const step of option.steps) {
+        if (!mounted.current) return;
+
+        const edge = template.edges.find((item) => item.to === step.id);
+        if (edge) {
+          setFlowEdge(edge.id);
+          await sleep(stepDelay / 2);
+        }
+
+        if (!mounted.current) return;
+        setStatuses((prev) => ({ ...prev, [step.id]: "running" }));
+        pushLog(step.text);
+        await sleep(stepDelay);
+
+        if (!mounted.current) return;
+        setStatuses((prev) => ({ ...prev, [step.id]: "success" }));
+        setFlowEdge(null);
       }
-      setStatuses((prev) => ({ ...prev, [step.id]: "running" }));
-      pushLog(step.text);
-      await sleep(stepDelay);
-      setStatuses((prev) => ({ ...prev, [step.id]: "success" }));
-      setFlowEdge(null);
+
+      if (!mounted.current) return;
+      setStatuses((prev) => ({ ...prev, [option.skipped.id]: "skipped" }));
+      pushLog(option.skipped.text);
+
+      if (!mounted.current) return;
+      setSummary(option.summary);
+    } finally {
+      if (mounted.current) {
+        setRunning(false);
+      }
     }
-
-    setStatuses((prev) => ({ ...prev, [option.skipped.id]: "skipped" }));
-    pushLog(option.skipped.text);
-
-    setSummary(option.summary);
-    setRunning(false);
   };
 
   const reset = () => clearRun();
