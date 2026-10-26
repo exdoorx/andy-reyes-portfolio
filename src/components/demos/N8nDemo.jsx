@@ -268,9 +268,6 @@ export default function N8nDemo() {
     const stepDelay = reducedMotion.current ? 40 : 620;
     const appended = [];
 
-    // Safety check for template consistency
-    const nodes = new Set(template.nodes.map(n => n.id));
-
     const pushLog = (text) => {
       if (!mounted.current) return;
       appended.push(text);

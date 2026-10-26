@@ -20,18 +20,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Restores the visitor's saved theme before the first paint to avoid a flash. -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var prefersDark =
-            !stored && window.matchMedia("(prefers-color-scheme: light)").matches === false;
-          var isDark = stored ? stored === "dark" : prefersDark;
-          document.documentElement.classList.toggle("dark", isDark);
-        } catch (error) {}
-      })();
-    </script>
+    <!-- Restores the visitor's saved theme before the first paint to avoid a flash.
+         Kept external (public/theme-init.js) so the CSP can forbid inline scripts. -->
+    <script src="/theme-init.js"></script>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Andy Reyes" />

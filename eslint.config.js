@@ -42,4 +42,11 @@ export default [
       "no-console": "off",
     },
   },
+  {
+    // Cloudflare Workers: server-side structured logging is the point.
+    files: ["cloudflare/**/*.js"],
+    rules: {
+      "no-console": "off",
+    },
+  },
 ];

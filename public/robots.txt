@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /#login
+Disallow: /#admin
 
 Sitemap: https://areyes-eight.vercel.app/sitemap.xml

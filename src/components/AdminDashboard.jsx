@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { Moon, Sun, ArrowRight, Shield, Database, Wrench, Sparkles, Check, ExternalLink } from "./ui/Icons";
+import { Moon, Sun, ExternalLink, Shield } from "./ui/Icons";
+import { isAdminEndpointConfigured, fetchAdminMessages } from "../lib/adminMessages";
 import { supabase } from "../lib/supabase";
 
 function UsersIcon({ className = "h-5 w-5" }) {
@@ -33,12 +34,13 @@ function TrendingUpIcon({ className = "h-5 w-5" }) {
 }
 
 export default function AdminDashboard({ dark, toggleDark }) {
-  const { user, signOut, isConfigured } = useAuth();
+  const { session, signOut, isConfigured } = useAuth();
   const [messages, setMessages] = useState([]);
   const [loadingMessages, setLoadingMessages] = useState(false);
+  const [messagesError, setMessagesError] = useState(null);
   const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'analytics' | 'messages'
 
-  // Simulated live visitor analytics state
+  // Simulated live visitor analytics state ("DEMO DATA" is displayed next to it).
   const [analytics, setAnalytics] = useState({
     totalVisits: 1428,
     uniqueVisitors: 984,
@@ -61,22 +63,46 @@ export default function AdminDashboard({ dark, toggleDark }) {
   });
 
   useEffect(() => {
-    if (isConfigured && supabase) {
-      setLoadingMessages(true);
-      supabase
-        .from("contact_messages")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(10)
-        .then(({ data, error }) => {
-          if (!error && data) {
-            setMessages(data);
-          }
-          setLoadingMessages(false);
-        })
-        .catch(() => setLoadingMessages(false));
+    if (!isConfigured || !supabase) {
+      setMessagesError("Authentication provider is not configured on this deployment.");
+      return;
     }
-  }, [isConfigured]);
+    if (!isAdminEndpointConfigured) {
+      setMessagesError(
+        "Messages endpoint is not configured — set VITE_CONTACT_ENDPOINT and deploy the contact worker.",
+      );
+      return;
+    }
+    const token = session?.access_token;
+    if (!token) {
+      setMessagesError("No session token available — sign in again.");
+      return;
+    }
+    let cancelled = false;
+    setLoadingMessages(true);
+    setMessagesError(null);
+    fetchAdminMessages(token)
+      .then((data) => {
+        if (!cancelled && Array.isArray(data)) {
+          setMessages(data);
+        } else if (!cancelled && Array.isArray(data?.messages)) {
+          setMessages(data.messages);
+        } else if (!cancelled) {
+          setMessagesError("Unexpected response from the messages endpoint.");
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setMessagesError(err instanceof Error ? err.message : "Failed to load messages.");
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingMessages(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [session?.access_token, isConfigured]);
 
   // Simulate live tick for realism
   useEffect(() => {
@@ -107,9 +133,9 @@ export default function AdminDashboard({ dark, toggleDark }) {
               <span className="font-display text-sm font-bold text-slate-950 dark:text-white block">
                 Andy Reyes <span className="text-brand-500">Workspace</span>
               </span>
-              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 uppercase tracking-widest font-semibold flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Live Analytics & Security Active
+              <span className="text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest font-semibold flex items-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                Traffic analytics: simulated demo data
               </span>
             </div>
           </div>
@@ -151,8 +177,10 @@ export default function AdminDashboard({ dark, toggleDark }) {
               <div className="flex items-center gap-2 mb-2">
                 <span className="eyebrow">Command Center</span>
                 <span className="chip text-[10px] py-0.5 px-2 bg-brand-500/10 text-brand-600 dark:text-brand-400 border-brand-500/20">
-                  <span className="h-1.5 w-1.5 rounded-full bg-brand-500 inline-block mr-1 animate-ping" />
-                  Real-time telemetry
+                  Inquiries: live database data
+                </span>
+                <span className="chip text-[10px] py-0.5 px-2 bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20">
+                  Visitors &amp; traffic: simulated demo data
                 </span>
               </div>
               <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white">
@@ -260,7 +288,7 @@ export default function AdminDashboard({ dark, toggleDark }) {
                     <UsersIcon className="h-5 w-5 text-brand-500" /> Live Visitor Sessions & Time Spent
                   </h2>
                   <p className="text-xs text-slate-500">
-                    Real-time tracking of visitor location, device, active page, and session duration.
+                    Simulated playground data — not real visitor tracking. No visitor analytics are collected on this site.
                   </p>
                 </div>
                 <span className="chip text-xs">
@@ -375,6 +403,14 @@ export default function AdminDashboard({ dark, toggleDark }) {
 
             {loadingMessages ? (
               <div className="py-8 text-center text-xs text-slate-500">Loading messages...</div>
+            ) : messagesError ? (
+              <div
+                role="alert"
+                className="py-6 px-4 text-xs text-amber-700 dark:text-amber-400 rounded-xl border border-amber-500/20 bg-amber-500/5"
+              >
+                <strong className="block mb-1">Messages could not be loaded</strong>
+                {messagesError}
+              </div>
             ) : messages.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs text-slate-600 dark:text-slate-400 border-collapse">

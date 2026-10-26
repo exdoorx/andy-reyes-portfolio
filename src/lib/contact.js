@@ -7,7 +7,9 @@
 
 const rawEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT?.trim();
 const rawUrl = import.meta.env.VITE_SUPABASE_URL?.trim().replace(/\/$/, "");
-const rawKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim();
+// Canonical variable name — must match src/lib/supabase.js. (The old
+// VITE_SUPABASE_ANON_KEY name silently broke the Supabase contact mode.)
+const rawKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.trim();
 
 const looksLikePlaceholder = (value) =>
   !value || /YOUR[-_]|example\.com|placeholder/i.test(value);

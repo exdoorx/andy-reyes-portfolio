@@ -19,8 +19,10 @@ function ProtectedRoute({ children }) {
     );
   }
 
-  // If Supabase is not configured, or user is signed in, allow access to admin for seamless evaluation
-  if (!user && isConfigured && window.location.hash !== "#admin-demo") {
+  // Default-deny: require a real authenticated Supabase session.
+  // The "#admin-demo" review shortcut (fake data, no backend) is compiled out of
+  // production builds — it must never render on a deployed deployment.
+  if (!user && (isConfigured || !import.meta.env.DEV)) {
     window.location.hash = "#login";
     return <Login />;
   }

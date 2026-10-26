@@ -1,5 +1,6 @@
 import { useState, useId } from "react";
 import { useAuth } from "../context/AuthContext";
+import { sanitizeHashRedirect } from "../lib/redirect";
 import { Moon, Sun, ArrowRight, Shield } from "./ui/Icons";
 
 function EyeIcon({ className = "h-4 w-4" }) {
@@ -58,23 +59,29 @@ export default function Login({ dark, toggleDark }) {
 
     try {
       if (!isConfigured) {
-        // Demo fallback simulation for presentation/review when env vars aren't injected
-        await new Promise((resolve) => setTimeout(resolve, 800));
-        if (email === "admin@andy.dev" && password === "password123") {
-          window.location.hash = "#admin";
-          return;
-        } else {
-          throw new Error("Invalid login credentials (Demo mode: try admin@andy.dev / password123)");
-        }
+        // No demo credentials on any build. Never simulate an authenticated state.
+        throw new Error(
+          "Admin sign-in is unavailable because the authentication provider is not configured on this deployment.",
+        );
       }
 
       await signIn(email.trim(), password);
-      // Success redirect
+      // Success redirect — sanitized to a local hash; user-supplied values can never
+      // point to an external origin or a javascript:/data: URI (open-redirect defense).
       const urlParams = new URLSearchParams(window.location.search);
-      const redirect = urlParams.get("redirect") || "#admin";
-      window.location.hash = redirect.startsWith("#") ? redirect : `#${redirect}`;
+      window.location.hash = sanitizeHashRedirect(urlParams.get("redirect"));
     } catch (err) {
-      setError(err.message || "Authentication failed. Please check your credentials.");
+      // Generic message only: avoids account enumeration and never echoes raw
+      // provider errors (which can confirm whether an email exists).
+      const knownSafe =
+        err instanceof Error &&
+        (err.message.includes("sign-in is unavailable") ||
+          err.message.includes("fill in"));
+      setError(
+        knownSafe && err.message
+          ? err.message
+          : "Invalid email or password.",
+      );
     } finally {
       setLoading(false);
     }
@@ -102,7 +109,8 @@ export default function Login({ dark, toggleDark }) {
       await resetPassword(email.trim());
       setSuccess("Password reset email sent! Please check your inbox for instructions.");
     } catch (err) {
-      setError(err.message || "Unable to send reset password email.");
+      // Generic failure text — never echo provider diagnostics on an auth workflow.
+      setError("Unable to process the password reset request right now.");
     } finally {
       setLoading(false);
     }

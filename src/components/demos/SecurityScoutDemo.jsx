@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { demoGhost } from "./demoStyles";
 
 export default function SecurityScoutDemo() {
   const [traffic, setTraffic] = useState([]);
