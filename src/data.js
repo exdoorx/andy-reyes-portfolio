@@ -29,15 +29,14 @@ export const profile = {
   school: "San Sebastian College - Recoletos de Manila",
   course: "Bachelor of Science in Information Technology",
   about: [
-    "I'm an IT professional with hands-on experience in software development support, technical support, and network security. I enjoy turning messy technical problems into clear, reliable solutions.",
-    "At ZOOSK Limited, I used Python and security intelligence to investigate complex technical issues and supported customers through resolution. I've also worked in remote technical roles that required clear communication, careful troubleshooting, and a customer-first approach.",
-    "I hold TESDA NC II and NC III certifications and continue building my skills in software development, AI automation, and cybersecurity. I use Claude, Google Gemini, and Microsoft Copilot to speed up research, prototyping, and repetitive workflows — while keeping the final implementation reviewed and intentional.",
+    "I am an IT professional specializing in software development, technical support, and network security. I focus on turning complex technical challenges into clear, reliable, and user-centric solutions.",
+    "My experience at ZOOSK Limited involved leveraging Python and security intelligence to resolve critical technical issues. I hold TESDA NC II and NC III certifications and actively integrate AI automation to streamline research and development while maintaining high standards of code quality and intentionality.",
   ],
 };
 
 export const stats = [
   { value: "3+", label: "Years in technical roles" },
-  { value: "10", label: "Working in-page demos" },
+  { value: "12", label: "Working in-page demos" },
   { value: "7", label: "Certificates & workshops" },
   { value: "BSIT", label: "Information Technology" },
 ];
@@ -330,6 +329,50 @@ export const projects = [
       "Entirely client-side: execution order, the branch decision, and log traces are computed from a mock payload per template. A live deployment would run the same workflow shapes in an n8n instance.",
     tech: ["n8n", "OpenCode AI agents", "Social media & support flows", "React"],
     demo: "n8n",
+  },
+  {
+    id: "bughunt",
+    title: "Bug Hunter: Logic Defense",
+    type: "Game",
+    status: "Playable demo",
+    emoji: "🐛",
+    accent: "#ef4444",
+    summary:
+      "A fast-paced mini-game where you identify and fix common code bugs before the timer runs out.",
+    problem:
+      "Code reviews require a sharp eye for detail, but training for them can be tedious.",
+    role: "Developed the game logic, bug randomization system, and the reactive UI.",
+    features: [
+      "Randomized code bug scenarios",
+      "Timed challenges",
+      "Score tracking and difficulty scaling",
+    ],
+    technical:
+      "Uses a custom state machine to manage game phases and randomized problem generation.",
+    tech: ["React", "State-driven game logic", "Animation"],
+    demo: "bughunt",
+  },
+  {
+    id: "securityscout",
+    title: "Security Scout: Traffic Guard",
+    type: "Game",
+    status: "Playable demo",
+    emoji: "🛡️",
+    accent: "#3b82f6",
+    summary:
+      "A network defense simulation where you block malicious packets based on suspicious patterns.",
+    problem:
+      "Understanding network traffic patterns is essential for security but hard to visualize.",
+    role: "Built the traffic simulation engine and the real-time blocking interface.",
+    features: [
+      "Real-time traffic visualization",
+      "Pattern-based threat detection",
+      "Defensive score and 'health' system",
+    ],
+    technical:
+      "Simulates packet flow using an interval-based generator with varied threat signatures.",
+    tech: ["React", "Real-time simulation", "Security fundamentals"],
+    demo: "securityscout",
   },
 ];
 

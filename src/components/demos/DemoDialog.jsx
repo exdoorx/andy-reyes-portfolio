@@ -9,6 +9,8 @@ import SubnetDemo from "./SubnetDemo";
 import PasswordDemo from "./PasswordDemo";
 import PlannerDemo from "./PlannerDemo";
 import N8nDemo from "./N8nDemo";
+import BugHuntDemo from "./BugHuntDemo";
+import SecurityScoutDemo from "./SecurityScoutDemo";
 
 const registry = {
   insurance: InsuranceDemo,
@@ -21,6 +23,8 @@ const registry = {
   password: PasswordDemo,
   planner: PlannerDemo,
   n8n: N8nDemo,
+  bughunt: BugHuntDemo,
+  securityscout: SecurityScoutDemo,
 };
 
 // Lazy-loaded by the Projects section so the demo code stays out of the main bundle.
