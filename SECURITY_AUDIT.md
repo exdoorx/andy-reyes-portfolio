@@ -26,8 +26,8 @@ Trusted boundaries: (1) Supabase database with RLS and triggers, (2) Cloudflare 
 | F4 | P0 | .env.example contained a usable-looking URL as the publishable key | Placeholders are syntactically invalid (REPLACEME prefix); example documents all three contact modes and worker secrets |
 | F5 | P0 | Hardcoded demo credentials admin@andy.dev/password123 in Login.jsx; #admin-demo hash bypass worked in production builds | Demo credentials removed entirely; bypass compiled out of production (import.meta.env.DEV gate); error text genericized (no enumeration, no provider-error echo) |
 | F6 | P1 | Open redirect: ?redirect= param copied into location.hash unvalidated | New lib/redirect.js (local-hash allowlist), wired into Login; 10 regression tests |
-| F7 | P1 | appointments UPDATE policy had no WITH CHECK and no column restriction (owner could reassign rows, edit any field) | database/migrations/002: trigger permits only status transitions for the owner; ownership immutable; policy has WITH CHECK |
-| F8 | P1 | orders.total client-writable (check total >= 0 only) | database/migrations/002: total derived by trigger from order_items; write guard rejects any total not matching the recomputed sum |
+| F7 | P1 | appointments UPDATE policy had no WITH CHECK and no column restriction (owner could reassign rows, edit any field) | supabase/migrations/002: trigger permits only status transitions for the owner; ownership immutable; policy has WITH CHECK |
+| F8 | P1 | orders.total client-writable (check total >= 0 only) | supabase/migrations/002: total derived by trigger from order_items; write guard rejects any total not matching the recomputed sum |
 | F9 | P2 | Worker defaulted ALLOWED_ORIGIN to * (open relay if unset) | Fail-closed: unset or mismatched Origin means 403 on POST/GET/OPTIONS |
 | F10 | P2 | Fake analytics labeled "Real-time telemetry" / "Live Analytics Active" | Honest labeling: "simulated demo data"; visitor table states no real tracking; inquiries correctly labeled live database data |
 | F11 | P2 | CSP required script-src 'unsafe-inline' (inline theme script) | Theme script moved to external public/theme-init.js; script-src is now 'self' only |
@@ -43,10 +43,10 @@ Trusted boundaries: (1) Supabase database with RLS and triggers, (2) Cloudflare 
 - src/lib/contact.js: canonical env var; placeholder logic unchanged
 - src/lib/adminMessages.js: new admin read path via worker
 - src/components/AdminDashboard.jsx: fetches via worker with session token; explicit error state; honest demo-data labeling; dead imports removed
-- src/security.test.js: 10 real tests (redirect + env contract)
+- tests/security/security.test.js: 10 real tests (redirect + env contract)
 - cloudflare/worker.js: fail-closed origin, GET /messages (token verification + allowlist), optional Turnstile verification, secret-free structured logs, mass-assignment rejection
 - cloudflare/worker.test.js: 12 tests (origin, JSON, size, allowlist, honeypot silence, 401s, preflight, fail-closed config)
-- database/migrations/002_harden_orders_and_appointments.sql: appointment update guard, orders total derivation and write guard
+- supabase/migrations/002_harden_orders_and_appointments.sql: appointment update guard, orders total derivation and write guard
 - vitest.config.js: include cloudflare tests (brace-glob bug found: {js} did not match; plain *.test.js works)
 - eslint.config.js: no-console off for workers (intentional server logging)
 - .env.example: unusable placeholders plus documentation
@@ -58,7 +58,7 @@ Trusted boundaries: (1) Supabase database with RLS and triggers, (2) Cloudflare 
 3. Authentication > Policies: enable email confirmation; set minimum password length 12 or higher.
 4. Authentication > MFA: announce/enroll a TOTP factor for the admin account; store recovery codes offline. Enforcing MFA cannot be done by RLS alone: it requires checking the AAL claim in database policies (see Supabase docs) or accepting a documented limitation that enrollment is optional.
 5. Auth Providers > Email > Rate limits: keep default email rate limits; confirm max frequency for password reset (allowed emails per hour is configurable; low number is good, do not silently lockout).
-6. SQL editor: run database/schema.sql (if not yet) then database/migrations/002_harden_orders_and_appointments.sql. Then revoke direct EXECUTE on the three shipped functions from anon/authenticated (see comments in migration).
+6. SQL editor: run supabase/migrations/001_initial_schema.sql (if not yet) then supabase/migrations/002_harden_orders_and_appointments.sql. Then revoke direct EXECUTE on the three shipped functions from anon/authenticated (see comments in migration).
 7. Database > Storage: no buckets used; nothing to change (verified empty usage).
 8. Leave contact_messages RLS exactly as is: INSERT-only. Do not add SELECT for anon/authenticated; reads stay in the worker.
 
@@ -81,7 +81,7 @@ Trusted boundaries: (1) Supabase database with RLS and triggers, (2) Cloudflare 
 
 Command: npx vitest run. Result: 6 files, 44 tests, 44 passed, 0 failed. Duration ~0.8-1.0 s. Breakdown:
 - src/lib/mathSolver/nutrition/password/subnet: 22 pre-existing tests, still passing.
-- src/security.test.js: 10 tests (redirect sanitizer vs external URLs/URI schemes/protocol-relative/encoding/non-string; contact env contract incl. exact regression F1).
+- tests/security/security.test.js: 10 tests (redirect sanitizer vs external URLs/URI schemes/protocol-relative/encoding/non-string; contact env contract incl. exact regression F1).
 - cloudflare/worker.test.js: 12 tests (mismatched Origin 403; missing Origin 403; malformed JSON 400; size 413; five field-validation 400s including wrong-type; honeypot silent 200 without DB call; GET /messages 401 with no token and with garbage token; preflight 403 for evil origin, 204 for allowed; 403 with ALLOWED_ORIGIN unset; 500 with malformed SUPABASE_URL).
 
 Command: npx eslint . Result: 0 problems. Command: npm run build. Result: built successfully; dist verified: no .map files, no inline executable scripts, no hardcoded credentials, no service-role material in bundles; only VITE_SUPABASE_URL/VITE_SUPABASE_PUBLISHABLE_KEY/VITE_CONTACT_ENDPOINT referenced (these are public-safe values).

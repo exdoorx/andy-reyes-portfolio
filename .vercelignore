@@ -1,0 +1,10 @@
+# Operational/private files that must not ship inside deployment uploads.
+# The Vercel build only needs index.html, public/, src/ and the configs.
+SECURITY_AUDIT.md
+AUTHENTICATION_IMPLEMENTATION.md
+supabase/
+cloudflare/
+tests/
+scripts/
+.claude/
+.vscode/

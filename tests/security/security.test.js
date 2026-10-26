@@ -2,7 +2,7 @@ import { describe, it, expect, vi, afterEach } from "vitest";
 
 // The redirect sanitizer under test must be the REAL implementation used by
 // Login.jsx — not a copy defined inside the test file.
-const { sanitizeHashRedirect } = await import("./lib/redirect.js");
+const { sanitizeHashRedirect } = await import("../../src/lib/redirect.js");
 
 describe("open-redirect defense (lib/redirect.js)", () => {
   it("passes through safe local hashes", () => {
@@ -54,7 +54,7 @@ describe("contact delivery env contract (lib/contact.js)", () => {
   it("activates supabase mode with the canonical publishable key variable", async () => {
     vi.stubEnv("VITE_SUPABASE_URL", "https://myproject123.supabase.co");
     vi.stubEnv("VITE_SUPABASE_PUBLISHABLE_KEY", "x".repeat(40));
-    const contact = await import("./lib/contact.js");
+    const contact = await import("../../src/lib/contact.js");
     expect(contact.contactMode).toBe("supabase");
   });
 
@@ -62,14 +62,14 @@ describe("contact delivery env contract (lib/contact.js)", () => {
     vi.stubEnv("VITE_CONTACT_ENDPOINT", "https://my-worker.example.workers.dev");
     vi.stubEnv("VITE_SUPABASE_URL", "https://myproject123.supabase.co");
     vi.stubEnv("VITE_SUPABASE_PUBLISHABLE_KEY", "x".repeat(40));
-    const contact = await import("./lib/contact.js");
+    const contact = await import("../../src/lib/contact.js");
     expect(contact.contactMode).toBe("worker");
   });
 
   it("never treats placeholder values as configuration", async () => {
     vi.stubEnv("VITE_SUPABASE_URL", "https://your-project-id.supabase.co");
     vi.stubEnv("VITE_SUPABASE_PUBLISHABLE_KEY", "your-supabase-anon-key");
-    const contact = await import("./lib/contact.js");
+    const contact = await import("../../src/lib/contact.js");
     expect(contact.contactMode).toBe("mailto");
   });
 
@@ -77,7 +77,7 @@ describe("contact delivery env contract (lib/contact.js)", () => {
     vi.stubEnv("VITE_SUPABASE_URL", "");
     vi.stubEnv("VITE_SUPABASE_PUBLISHABLE_KEY", "");
     vi.stubEnv("VITE_CONTACT_ENDPOINT", "");
-    const contact = await import("./lib/contact.js");
+    const contact = await import("../../src/lib/contact.js");
     expect(contact.contactMode).toBe("mailto");
   });
 });

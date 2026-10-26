@@ -1,7 +1,7 @@
 import { useState, useId } from "react";
-import { useAuth } from "../context/AuthContext";
-import { sanitizeHashRedirect } from "../lib/redirect";
-import { Moon, Sun, ArrowRight, Shield } from "./ui/Icons";
+import { useAuth } from "./AuthContext";
+import { sanitizeHashRedirect } from "../../lib/redirect";
+import { Moon, Sun, ArrowRight, Shield } from "../../components/ui/Icons";
 
 function EyeIcon({ className = "h-4 w-4" }) {
   return (

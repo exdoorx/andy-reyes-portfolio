@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
-import { Moon, Sun, ExternalLink, Shield } from "./ui/Icons";
-import { isAdminEndpointConfigured, fetchAdminMessages } from "../lib/adminMessages";
-import { supabase } from "../lib/supabase";
+import { useAuth } from "../identity/AuthContext";
+import { Moon, Sun, ExternalLink, Shield } from "../../components/ui/Icons";
+import { isAdminEndpointConfigured, fetchAdminMessages } from "../../lib/adminMessages";
+import { supabase } from "../../lib/supabase";
+
+// Demo content is dev-only. The dynamic import is removed from production
+// bundles by the bundler (import.meta.env.DEV is statically false there).
+const loadDemoData = import.meta.env.DEV
+  ? () => import("../../data/demoEngagement")
+  : () => Promise.reject(new Error("Demo data is not available in production builds."));
 
 function UsersIcon({ className = "h-5 w-5" }) {
   return (
@@ -40,29 +46,47 @@ export default function AdminDashboard({ dark, toggleDark }) {
   const [messagesError, setMessagesError] = useState(null);
   const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'analytics' | 'messages'
 
-  // Simulated live visitor analytics state ("DEMO DATA" is displayed next to it).
-  const [analytics, setAnalytics] = useState({
-    totalVisits: 1428,
-    uniqueVisitors: 984,
-    liveNow: 4,
-    avgTimeOnSite: "3m 42s",
-    bounceRate: "34.2%",
-    topPages: [
-      { path: "/#home", title: "Portfolio Home", views: "842", avgTime: "2m 15s" },
-      { path: "/#projects", title: "Projects & Demos", views: "390", avgTime: "4m 10s" },
-      { path: "/#skills", title: "Skills & Stack", views: "128", viewsPercent: "9%", avgTime: "1m 30s" },
-      { path: "/#contact", title: "Contact Form", views: "68", viewsPercent: "5%", avgTime: "1m 05s" },
-    ],
-    recentVisitors: [
-      { id: "v-1", ip: "192.168.x.x", location: "Manila, PH", device: "Chrome / macOS", duration: "4m 12s", status: "Active now", page: "/#projects" },
-      { id: "v-2", ip: "10.0.x.x", location: "Quezon City, PH", device: "Safari / iOS", duration: "2m 45s", status: "Active now", page: "/#home" },
-      { id: "v-3", ip: "172.16.x.x", location: "San Francisco, US", device: "Edge / Windows", duration: "6m 30s", status: "Left 2m ago", page: "/#experience" },
-      { id: "v-4", ip: "192.168.1.5", location: "Singapore, SG", device: "Firefox / Linux", duration: "1m 15s", status: "Left 5m ago", page: "/#playground" },
-      { id: "v-5", ip: "203.0.113.8", location: "Tokyo, JP", device: "Mobile Safari / iOS", duration: "5m 02s", status: "Left 12m ago", page: "/#projects" },
-    ]
-  });
+  // Simulated live visitor analytics state (labeled "simulated demo data").
+  // Hydrated from a dev-only chunk; production builds show placeholders.
+  const [analytics, setAnalytics] = useState(null);
+
+  // Demo inquiries are rendered only in local development while the real
+  // messages endpoint is not configured — never in production builds.
+  const showingDemoMessages = !isAdminEndpointConfigured && import.meta.env.DEV;
 
   useEffect(() => {
+    let cancelled = false;
+    loadDemoData()
+      .then((module) => {
+        if (!cancelled) setAnalytics(module.demoAnalytics);
+      })
+      .catch(() => {
+        /* production: analytics cards render placeholders */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showingDemoMessages) {
+      let cancelled = false;
+      setLoadingMessages(true);
+      setMessagesError(null);
+      loadDemoData()
+        .then((module) => {
+          if (!cancelled) {
+            setMessages(module.demoInquiries);
+            setLoadingMessages(false);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) setLoadingMessages(false);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }
     if (!isConfigured || !supabase) {
       setMessagesError("Authentication provider is not configured on this deployment.");
       return;
@@ -102,15 +126,16 @@ export default function AdminDashboard({ dark, toggleDark }) {
     return () => {
       cancelled = true;
     };
-  }, [session?.access_token, isConfigured]);
+  }, [session?.access_token, isConfigured, showingDemoMessages]);
 
-  // Simulate live tick for realism
+  // Animate the "live now" count around its base value (simulated demo data).
   useEffect(() => {
     const timer = setInterval(() => {
-      setAnalytics((prev) => ({
-        ...prev,
-        liveNow: Math.max(2, prev.liveNow + (Math.random() > 0.5 ? 1 : -1))
-      }));
+      setAnalytics((prev) =>
+        prev
+          ? { ...prev, liveNow: Math.max(60, prev.liveNow + (Math.random() > 0.5 ? 3 : -2)) }
+          : prev,
+      );
     }, 6000);
     return () => clearInterval(timer);
   }, []);
@@ -234,7 +259,7 @@ export default function AdminDashboard({ dark, toggleDark }) {
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics.liveNow}</span>
+              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics?.liveNow ?? "—"}</span>
               <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">browsing right now</span>
             </div>
             <p className="text-[11px] text-slate-400">Active sessions across portfolio</p>
@@ -246,10 +271,10 @@ export default function AdminDashboard({ dark, toggleDark }) {
               <TrendingUpIcon className="h-4 w-4 text-brand-500" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics.totalVisits}</span>
-              <span className="text-xs text-brand-600 dark:text-brand-400 font-medium">+18.4% this week</span>
+              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics?.totalVisits?.toLocaleString("en-US") ?? "—"}</span>
+              <span className="text-xs text-brand-600 dark:text-brand-400 font-medium">lifetime page views</span>
             </div>
-            <p className="text-[11px] text-slate-400">Unique visitors: {analytics.uniqueVisitors}</p>
+            <p className="text-[11px] text-slate-400">Unique visitors: {analytics?.uniqueVisitors ?? "—"}</p>
           </div>
 
           <div className="surface p-5 space-y-2">
@@ -258,10 +283,10 @@ export default function AdminDashboard({ dark, toggleDark }) {
               <ClockIcon className="h-4 w-4 text-accent-500" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics.avgTimeOnSite}</span>
+              <span className="font-display text-3xl font-bold text-slate-950 dark:text-white">{analytics?.avgTimeOnSite ?? "—"}</span>
               <span className="text-xs text-accent-600 dark:text-accent-400 font-medium">high engagement</span>
             </div>
-            <p className="text-[11px] text-slate-400">Bounce rate: {analytics.bounceRate}</p>
+            <p className="text-[11px] text-slate-400">Bounce rate: {analytics?.bounceRate ?? "—"}</p>
           </div>
 
           <div className="surface p-5 space-y-2">
@@ -292,13 +317,13 @@ export default function AdminDashboard({ dark, toggleDark }) {
                   </p>
                 </div>
                 <span className="chip text-xs">
-                  {analytics.recentVisitors.length} Recent Sessions
+                  {analytics?.recentVisitors?.length ?? "—"} Recent Sessions
                 </span>
               </div>
 
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto max-h-96 overflow-y-auto">
                 <table className="w-full text-left text-xs text-slate-600 dark:text-slate-400 border-collapse">
-                  <thead>
+                  <thead className="sticky top-0 bg-slate-50 dark:bg-[#0b1220]">
                     <tr className="border-b border-slate-200 dark:border-white/10 text-slate-500 font-semibold uppercase tracking-wider">
                       <th className="py-3 px-3">Visitor / Location</th>
                       <th className="py-3 px-3">Active Page</th>
@@ -308,7 +333,7 @@ export default function AdminDashboard({ dark, toggleDark }) {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-white/5">
-                    {analytics.recentVisitors.map((visitor) => (
+                    {(analytics?.recentVisitors ?? []).map((visitor) => (
                       <tr key={visitor.id} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition">
                         <td className="py-3.5 px-3">
                           <span className="font-medium text-slate-950 dark:text-white block">{visitor.location}</span>
@@ -352,7 +377,7 @@ export default function AdminDashboard({ dark, toggleDark }) {
               </div>
 
               <div className="space-y-4">
-                {analytics.topPages.map((page, idx) => (
+                {(analytics?.topPages ?? []).map((page, idx) => (
                   <div key={idx} className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-medium text-slate-900 dark:text-slate-200">{page.title}</span>
@@ -390,14 +415,16 @@ export default function AdminDashboard({ dark, toggleDark }) {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="font-display text-lg font-bold text-slate-950 dark:text-white">
-                  Contact Inquiries
+                  {showingDemoMessages ? "Sample Inquiries (demo data)" : "Contact Inquiries"}
                 </h2>
                 <p className="text-xs text-slate-500">
-                  Messages received via your portfolio contact form.
+                  {showingDemoMessages
+                    ? "Fictional sample data for development only. Connect the messages endpoint to see real form submissions."
+                    : "Messages received via your portfolio contact form."}
                 </p>
               </div>
               <span className="chip text-xs">
-                {messages.length} Inquiry{messages.length === 1 ? "" : "s"}
+                {showingDemoMessages ? "50 samples" : `${messages.length} Inquiry${messages.length === 1 ? "" : "s"}`}
               </span>
             </div>
 

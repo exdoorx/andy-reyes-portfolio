@@ -44,10 +44,12 @@ andy-reyes-portfolio/
 ├── vite.config.js
 ├── eslint.config.js
 ├── vitest.config.js
-├── database/schema.sql         # optional PostgreSQL/Supabase schema for the contact form + demos
+├── vercel.json                # security headers (CSP, HSTS, nosniff, ...)
+├── supabase/migrations/       # versioned SQL: 001_initial_schema.sql, 002_harden_orders_and_appointments.sql
 ├── cloudflare/
 │   ├── wrangler.toml
-│   └── worker.js               # optional server-side contact form endpoint
+│   ├── worker.js               # server-side contact form endpoint (service-key custody)
+│   └── worker.test.js
 ├── public/
 │   ├── andy.jpg                # original portrait
 │   ├── andy-480.webp / andy-800.webp
@@ -56,25 +58,26 @@ andy-reyes-portfolio/
 │   ├── og-image.png
 │   ├── manifest.json
 │   ├── robots.txt
+│   ├── theme-init.js           # external theme bootstrap (CSP: no inline scripts)
 │   └── sitemap.xml
+├── tests/security/            # security regression tests (redirects, env contract)
 └── src/
     ├── App.jsx
+    ├── Root.jsx               # hash router + auth gate
     ├── main.jsx
     ├── index.css
-    ├── data.js                 # all portfolio copy, projects, skills, experience
+    ├── data.js                # all portfolio copy, projects, skills, experience
+    ├── data/                  # demoEngagement.js (dev-only samples), brands.js
     ├── hooks/useTheme.js
-    ├── lib/
-    │   ├── contact.js          # contact form delivery (worker / Supabase / mailto fallback)
-    │   ├── mathSolver.js       # expression parser + linear solver
-    │   ├── nutrition.js
-    │   ├── password.js
-    │   ├── subnet.js
-    │   └── *.test.js           # unit tests for the logic above
+    ├── lib/                   # browser-safe modules only (public anon key, calculators)
+    ├── features/
+    │   ├── identity/          # AuthContext, Login (all auth UI + state)
+    │   └── admin/             # AdminDashboard (privileged UI; data path via worker)
     ├── components/
-    │   ├── layout/             # Navbar and Footer
-    │   ├── sections/           # Hero, About, Skills, Projects, Experience, Credentials, Playground, Engineering, Contact
-    │   ├── demos/              # in-page interactive demos used by the Projects section
-    │   └── ui/                 # Section, Reveal, Modal, Icons
+    │   ├── layout/            # Navbar and Footer
+    │   ├── sections/          # Hero, About, Skills, Projects, Experience, Certifications, Brands, Playground, Engineering, Contact
+    │   ├── demos/             # in-page interactive demos used by the Projects section
+    │   └── ui/                # Section, Reveal, Modal, Icons
     └── ...
 ```
 

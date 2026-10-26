@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import App from "./App.jsx";
-import Login from "./components/Login.jsx";
-import AdminDashboard from "./components/AdminDashboard.jsx";
-import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
+import Login from "./features/identity/Login.jsx";
+import AdminDashboard from "./features/admin/AdminDashboard.jsx";
+import { AuthProvider, useAuth } from "./features/identity/AuthContext.jsx";
 import useTheme from "./hooks/useTheme.js";
 
 function ProtectedRoute({ children }) {

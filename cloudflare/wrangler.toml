@@ -4,8 +4,12 @@ compatibility_date = "2025-01-01"
 
 [vars]
 # Your Supabase project URL (not secret)
-SUPABASE_URL = "https://YOUR-PROJECT-ID.supabase.co"
-# Your live website address, so only your site can call this Worker
-ALLOWED_ORIGIN = "https://YOUR-SITE.pages.dev"
+SUPABASE_URL = "https://tlaqysebhfvphhpgiyyt.supabase.co"
+# Your live website address, so only your site can call this Worker.
+# For local testing with `wrangler dev`, change this to http://localhost:5173
+ALLOWED_ORIGIN = "https://areyes-eight.vercel.app"
 
-# Secret (do NOT write it here). Set it with:  wrangler secret put SUPABASE_SERVICE_KEY
+# Secrets (do NOT write them here). Set with wrangler:
+#   wrangler secret put SUPABASE_SERVICE_KEY   -> your service_role key
+#   wrangler secret put ADMIN_USER_IDS         -> Supabase auth user UUID of the admin (from Authentication > Users)
+#   wrangler secret put TURNSTILE_SECRET_KEY   -> optional
